@@ -1,3 +1,4 @@
+
 /* main.js — Clean & Optimized GrimHide interactions */
 
 // --- Utility Functions ---
@@ -43,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const openCartBtn = $('#openCart');
   const closeCartBtn = $('#closeCart');
   const drawer = $('#drawer');
-  const backdrop = $('#backdrop');
+  const backdrop = $('.drawer-backdrop'); // Fixed selector
   const cartCountEl = $('#cartCount');
   const cartItemsEl = $('#cartItems');
   const subtotalEl = $('#subtotal');
@@ -52,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const sortSelect = $('#sort');
   const chips = $$('.chip');
   const grid = $('#grid');
-  const checkoutBtn = $('#checkout'); // ID corrected from 'checkoutBtn'
+  const checkoutBtn = $('#checkout');
 
   // --- State ---
   const CART_KEY = 'grimhide_cart_v1';
@@ -81,26 +82,28 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Header & hero parallax ---
   const onScroll = throttle(() => {
     const y = window.scrollY;
-    header?.classList.toggle('scrolled', y > 60);
+    
+    // Fixed header scroll effect
+    if (header) {
+      if (y > 60) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    }
 
     if (heroBg) {
       heroBg.style.transform = `translateY(${clamp(y * 0.15, 0, 120)}px) scale(${1 + Math.min(y / 6000, 0.02)})`;
     }
 
     // --- Back-to-top button logic ---
-    // Button dikhaye jab 400px se zyada scroll ho jaye.
-    // Button sirf tab chhupaaye jab wapas top ke qareeb aaye (y <= 100).
-    // Is se ye hoga ke button page ke end me bhi dikhata rahega.
     const backToTopBtn = $('#backToTop');
     if (backToTopBtn) {
         if (y > 400) {
-            backToTopBtn.style.opacity = '1';
-            backToTopBtn.style.transform = 'translateY(0)';
-        } else if (y <= 100) { // Only hide near the very top
-            backToTopBtn.style.opacity = '0';
-            backToTopBtn.style.transform = 'translateY(8px)';
+            backToTopBtn.classList.add('show');
+        } else if (y <= 100) {
+            backToTopBtn.classList.remove('show');
         }
-        // Agar 100 < y <= 400, to opacity/style change nahi hoga, jo ke pehle se set hai.
     }
 
     const docH = document.documentElement.scrollHeight - window.innerHeight;
@@ -191,7 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
     lightboxEl?.remove();
     lightboxEl = null;
     document.body.classList.remove('gh-modal-open');
-    closeDrawer(); // Ensure drawer closes too if needed
+    closeDrawer();
   };
 
   $$('.card .img img').forEach(img => {
@@ -212,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
     cartItemsEl.innerHTML = '';
     let sub = 0;
 
-      if (cart.length === 0) {
+    if (cart.length === 0) {
       cartItemsEl.innerHTML = `
         <div class="cart-empty">
           <i class="fas fa-shopping-cart cart-empty-icon"></i>
@@ -257,30 +260,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const openDrawer = () => {
     drawer?.classList.add('open');
-    backdrop?.classList.add('show');
+    if (backdrop) backdrop.classList.add('show');
     drawer?.setAttribute('aria-hidden', 'false');
     drawer.releaseTrap = trapFocus(drawer);
   };
 
   const closeDrawer = () => {
     drawer?.classList.remove('open');
-    backdrop?.classList.remove('show');
+    if (backdrop) backdrop.classList.remove('show');
     drawer?.setAttribute('aria-hidden', 'true');
     drawer.releaseTrap?.();
   };
 
   // --- Cart Event Listeners ---
-  // ✅ Open mini cart drawer when cart button is clicked
   openCartBtn?.addEventListener('click', function(e) {
     e.preventDefault();
     openDrawer();
   });
   
   closeCartBtn?.addEventListener('click', closeDrawer);
-  backdrop?.addEventListener('click', closeDrawer);
+  if (backdrop) backdrop.addEventListener('click', closeDrawer);
 
   // --- Checkout Button - Redirect to cart.html ---
-  // ✅ Proceed to Checkout button now goes to full cart page
   checkoutBtn?.addEventListener('click', function (e) {
     e.preventDefault();
     closeDrawer();
@@ -304,7 +305,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!imgEl) return;
     const rect = imgEl.getBoundingClientRect();
     const cartRect = openCartBtn?.getBoundingClientRect();
-    if (!cartRect) return; // Handle case where cart button isn't found
+    if (!cartRect) return;
     const clone = imgEl.cloneNode(true);
     Object.assign(clone.style, {
       position: 'fixed', left: `${rect.left}px`, top: `${rect.top}px`, width: `${rect.width}px`, height: `${rect.height}px`,
@@ -351,7 +352,7 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => cartCountEl.classList.remove('bounce'), 600);
     }
 
-    // ✅ Open cart drawer after adding item
+    // Open cart drawer after adding item
     openDrawer();
   }));
 
@@ -402,7 +403,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const searchContainer = qInput.closest('.search');
     if (searchContainer) {
-      const searchButton = searchContainer.querySelector('svg'); // Assuming the SVG is the clickable search icon
+      const searchButton = searchContainer.querySelector('svg');
       if (searchButton) {
         searchButton.style.cursor = 'pointer';
         searchButton.addEventListener('click', performSearch);
@@ -432,24 +433,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // --- Back-to-top button (Creation & Event) ---
-  // Note: Button styling is in CSS. This JS handles creation, scroll logic, and click.
-  const createBackToTopButton = () => {
-    if ($('#backToTop')) return; // Don't create if already exists
-    const back = document.createElement('button');
-    back.id = 'backToTop';
-    back.title = 'Back to top';
-    back.innerHTML = `<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 5l-7 7h4v7h6v-7h4z" fill="currentColor"/></svg>`;
-    Object.assign(back.style, {
-      position: 'fixed', right: '18px', bottom: '18px', width: '48px', height: '48px',
-      borderRadius: '999px', display: 'grid', placeItems: 'center', background: 'linear-gradient(45deg,var(--brand),var(--brand-2))',
-      color: '#111', boxShadow: '0 8px 26px rgba(0,0,0,.45)', cursor: 'pointer', opacity: '0', transition: 'opacity .26s, transform .26s', zIndex: '1200',
-      transform: 'translateY(8px)' // Start hidden and slightly below
-    });
-    document.body.appendChild(back);
-    back.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-  };
-  createBackToTopButton(); // Create the button on page load
+  // --- Back-to-top button ---
+  const backToTopBtn = $('#backToTop');
+  if (backToTopBtn) {
+    backToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  }
 
   // --- View Details Button Navigation ---
   document.addEventListener('click', function (e) {
@@ -465,12 +453,5 @@ document.addEventListener('DOMContentLoaded', () => {
   performSearch();
   document.body.classList.add('loaded');
 
-  // --- Ensure search works on page load (if needed) ---
-  // This might not be strictly necessary if performSearch runs correctly on init
-  // const event = new Event('input', { bubbles: true });
-  // qInput?.dispatchEvent(event);
-
 });
 
-// ✅ Remove the conflicting event listener that was opening cart.html directly
-// The correct functionality is now handled in the main DOMContentLoaded event listener above
