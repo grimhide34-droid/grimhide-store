@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="GrimHide — Premium leather armor crafted for protection, style, and durability. Shop our collection of handcrafted warrior gear." />
+  <title>Product Detail - GrimHide</title>
+  <link rel="stylesheet" href="/css/single-style.css"> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <!-- Header (same as before - no changes needed) -->
+  <header class="header">
+    <div class="container">
+      <nav class="nav">
+        <a href="index.html" class="brand">
+          <span class="brand-dot"></span>
+          GrimHide
+        </a>
+        
+        <div class="nav-links">
+          <a href="index.html#home" class="nav-link">Home</a>
+          <a href="products.html" class="nav-link">Products</a> 
+          <a href="index.html#about" class="nav-link">About</a>
+          <a href="index.html#contact" class="nav-link">Contact</a>
+        </div>
+        
+        <div class="nav-actions">
+          <div class="search-bar">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" class="search-input" placeholder="Search products...">
+          </div>
+          
+          <button class="cart-btn" id="cart-btn">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count" id="cart-count">0</span>
+          </button>
+         
+          
+          <button class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Product Section -->
+  <main>
+    <section class="product-hero">
+      <div class="container">
+        <div class="breadcrumbs">
+          <a href="index.html" class="breadcrumb-link">Home</a>
+          <span class="breadcrumb-divider">/</span>
+          <a href="products.html" class="breadcrumb-link">Products</a> <!-- Link  -->
+          <span class="breadcrumb-divider">/</span>
+          <span id="breadcrumb-product-name">Product</span> 
+        </div>
+        
+        <div class="product-layout">
+          <!-- Product Gallery -->
+          <div class="product-gallery">
+            <div class="gallery-main">
+              <button class="gallery-nav prev" id="gallery-prev">❮</button>
+              <img id="main-image" src="" alt="" class="main-image"> 
+              <button class="gallery-nav next" id="gallery-next">❯</button>
+              <div class="zoom-indicator">
+                <i class="fas fa-search-plus"></i> Click to zoom
+              </div>
+            </div>
+            
+            <div class="gallery-thumbs" id="gallery-thumbs">
+              
+            </div>
+          </div>
+          
+          <!-- Product Info -->
+          <div class="product-info">
+            <div class="product-header">
+              <h1 class="product-title" id="product-title">Product Name</h1>
+              <div class="product-badge">
+                <i class="fas fa-check"></i> In Stock
+              </div>
+              
+              <div class="product-rating">
+                <div class="rating-stars">★★★★★</div>
+                <div class="rating-text">4.9 (128 reviews)</div>
+              </div>
+            </div>
+            
+            <div class="product-pricing">
+              <span class="price-current" id="price-current">$0.00</span> <!-- ✅ Dynamic price -->
+              <span class="price-original" id="price-original"></span> <!-- ✅ Dynamic original price -->
+              <span class="price-discount" id="price-discount"></span> <!-- ✅ Dynamic discount -->
+            </div>
+            
+            <p class="product-description" id="product-description">
+              Product description will appear here.
+            </p> <!-- ✅ Dynamic description -->
+            
+            <div class="product-options">
+              <div class="option-group">
+                <label class="option-label">Color</label>
+                <div class="option-values">
+                  <label class="option-value">
+                    <input type="radio" name="color" value="black" class="option-input" checked>
+                    <span class="option-button">
+                      <span class="color-swatch color-black"></span> Black
+                    </span>
+                  </label>
+                  <label class="option-value">
+                    <input type="radio" name="color" value="brown" class="option-input">
+                    <span class="option-button">
+                      <span class="color-swatch color-brown"></span> Brown
+                    </span>
+                  </label>
+                </div>
+              </div>
+              
+              <div class="option-group">
+                <label class="option-label">Size</label>
+                <div class="option-values">
+                  <label class="option-value">
+                    <input type="radio" name="size" value="s" class="option-input">
+                    <span class="option-button">S</span>
+                  </label>
+                  <label class="option-value">
+                    <input type="radio" name="size" value="m" class="option-input" checked>
+                    <span class="option-button">M</span>
+                  </label>
+                  <label class="option-value">
+                    <input type="radio" name="size" value="l" class="option-input">
+                    <span class="option-button">L</span>
+                  </label>
+                  <label class="option-value">
+                    <input type="radio" name="size" value="xl" class="option-input">
+                    <span class="option-button">XL</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+            
+            <div class="product-actions">
+              <div class="quantity-selector">
+                <button class="quantity-button" id="qty-decrease">-</button>
+                <input type="number" class="quantity-input" id="qty-input" value="1" min="1" max="10">
+                <button class="quantity-button" id="qty-increase">+</button>
+              </div>
+              
+              <div class="action-buttons">
+                <button class="btn btn-primary" id="add-to-cart">
+                  <i class="fas fa-shopping-cart"></i> Add to Cart
+                </button>
+                <button class="btn btn-secondary" id="buy-now">
+                  <i class="fas fa-bolt"></i> Buy Now
+                </button>
+              </div>
+            </div>
+            
+            <div class="product-metadata">
+              <div class="metadata-item">
+                <div class="metadata-icon">
+                  <i class="fas fa-truck"></i>
+                </div>
+                <div class="metadata-text">Ships in 48h • Free over $200</div>
+              </div>
+              <div class="metadata-item">
+                <div class="metadata-icon">
+                  <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="metadata-text">1-year warranty</div>
+              </div>
+              <div class="metadata-item">
+                <div class="metadata-icon">
+                  <i class="fas fa-undo"></i>
+                </div>
+                <div class="metadata-text">30-day returns</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Product Tabs -->
+        <div class="product-tabs">
+          <div class="tabs-header">
+            <button class="tab-button active" data-tab="description">Description</button>
+            <button class="tab-button" data-tab="specifications">Specifications</button>
+            <button class="tab-button" data-tab="reviews">Reviews (128)</button>
+          </div>
+          
+          <div class="tab-content active" id="description">
+            <p id="product-description-tab">Product description will appear here.</p> <!-- ✅ Dynamic description -->
+            
+            <h3>Features</h3>
+            <ul class="features-list" id="features-list">
+              <!-- ✅ Dynamic features ayengi -->
+            </ul>
+          </div>
+          
+          <div class="tab-content" id="specifications">
+            <table class="specs-table" id="specs-table">
+              <!-- ✅ Dynamic specifications ayengi -->
+            </table>
+          </div>
+          
+          <div class="tab-content" id="reviews">
+            <div class="reviews-container">
+              <div class="review-card">
+                <div class="review-header">
+                  <div class="reviewer">Alex K.</div>
+                  <div class="review-date">12 Aug 2025</div>
+                </div>
+                <div class="rating-stars">★★★★★</div>
+                <div class="review-body">
+                  <p>Armor quality is next level. Comfortable and solid. Worth every penny. The fit is perfect and the craftsmanship is exceptional.</p>
+                </div>
+              </div>
+              
+              <div class="review-card">
+                <div class="review-header">
+                  <div class="reviewer">Sarah J.</div>
+                  <div class="review-date">03 Aug 2025</div>
+                </div>
+                <div class="rating-stars">★★★★☆</div>
+                <div class="review-body">
+                  <p>Great fit and finish. Delivery was fast. The sizing was perfect for my build. Only reason for 4 stars is that it was slightly heavier than I expected.</p>
+                </div>
+              </div>
+              
+              <div class="review-card">
+                <div class="review-header">
+                  <div class="reviewer">Michael T.</div>
+                  <div class="review-date">28 Jul 2025</div>
+                </div>
+                <div class="rating-stars">★★★★★</div>
+                <div class="review-body">
+                  <p>This is by far the best armor I've ever owned. The attention to detail is impressive and it offers great protection while still being comfortable to wear for hours.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Related Products  -->
+    <section class="related-products">
+      <div class="container">
+        <h2 class="section-title">You Might Also Like</h2>
+        
+        <div class="products-grid">
+          <div class="product-card">
+            <div class="card-image">
+              <img src="/images/product2/front.webp" alt="Ranger Armor" class="product-image">
+              <div class="card-overlay"></div>
+              <div class="card-badge">New</div>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Ranger Armor</h3>
+              <div class="card-price">
+                <span class="card-price-current">$279.00</span>
+              </div>
+              <button class="btn btn-secondary card-action" data-id="p2">View Details</button> <!-- id add kiya -->
+            </div>
+          </div>
+          
+          <div class="product-card">
+            <div class="card-image">
+              <img src="/images/product3/front.avif" alt="Assassin Armor" class="product-image">
+              <div class="card-overlay"></div>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Assassin Armor</h3>
+              <div class="card-price">
+                <span class="card-price-current">$349.00</span>
+                <span class="card-price-original">$399.00</span>
+              </div>
+              <button class="btn btn-secondary card-action" data-id="p3">View Details</button> <!-- ✅ data-id add kiya -->
+            </div>
+          </div>
+          
+          <div class="product-card">
+            <div class="card-image">
+              <img src="https://images.unsplash.com/photo-1630713814061-4d5e114d88d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Knight Armor" class="product-image">
+              <div class="card-overlay"></div>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Knight Armor</h3>
+              <div class="card-price">
+                <span class="card-price-current">$399.00</span>
+                <span class="card-price-original">$449.00</span>
+              </div>
+              <button class="btn btn-secondary card-action" data-id="p4">View Details</button> <!-- ✅ data-id add kiya -->
+            </div>
+          </div>
+          
+          <div class="product-card">
+            <div class="card-image">
+              <img src="  https://images.unsplash.com/photo-1617118684470-8d871c853b7b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Paladin Armor" class="product-image">
+              <div class="card-overlay"></div>
+              <div class="card-badge">Best Seller</div>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Paladin Armor</h3>
+              <div class="card-price">
+                <span class="card-price-current">$369.00</span>
+              </div>
+              <button class="btn btn-secondary card-action" data-id="p5">View Details</button> <!-- ✅ data-id add kiya -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <!-- Footer (same as before - no changes needed) -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">
+            <span class="brand-dot"></span> GrimHide
+          </div>
+          <p class="footer-description">
+            Crafting premium leather armor for protection, style, and durability since 2010. Each piece is handcrafted with attention to detail.
+          </p>
+        </div>
+        
+        <div>
+          <h3 class="footer-heading">Products</h3>
+          <ul class="footer-links">
+            <li class="footer-link"><a href="#">Warrior Armor</a></li>
+            <li class="footer-link"><a href="#">Ranger Armor</a></li>
+            <li class="footer-link"><a href="#">Assassin Armor</a></li>
+            <li class="footer-link"><a href="#">Knight Armor</a></li>
+            <li class="footer-link"><a href="#">View All</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="footer-heading">Company</h3>
+          <ul class="footer-links">
+            <li class="footer-link"><a href="#">About Us</a></li>
+            <li class="footer-link"><a href="#">Our Story</a></li>
+            <li class="footer-link"><a href="#">Careers</a></li>
+            <li class="footer-link"><a href="#">Press</a></li>
+            <li class="footer-link"><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="footer-heading">Support</h3>
+          <ul class="footer-links">
+            <li class="footer-link"><a href="#">FAQ</a></li>
+            <li class="footer-link"><a href="#">Shipping & Returns</a></li>
+            <li class="footer-link"><a href="#">Size Guide</a></li>
+            <li class="footer-link"><a href="#">Warranty</a></li>
+            <li class="footer-link"><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2023 GrimHide. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mini Cart Drawer -->
+  <div class="drawer-backdrop" id="drawer-backdrop">
+    <div class="drawer" id="cart-drawer">
+      <div class="drawer-header">
+        <h3>Your Cart</h3>
+        <div class="drawer-close" id="drawer-close">×</div>
+      </div>
+      <div class="drawer-items" id="drawer-items">
+        <!-- Cart items will be populated here -->
+        <div class="empty-cart-message" id="empty-cart">
+          <i class="fas fa-shopping-cart"></i>
+          <p>Your cart is empty</p>
+        </div>
+      </div>
+      <div class="cart-footer">
+        <div class="cart-summary">
+          <div class="cart-total-label">Total:</div>
+          <div class="cart-total-amount" id="cart-total">$0.00</div>
+        </div>
+        <button class="checkout-btn" id="checkout-btn">Proceed to Checkout</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/product-detail.js"></script>
+</body>
+</html>

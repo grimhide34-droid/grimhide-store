@@ -1,0 +1,425 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="GrimHide - Premium handcrafted leather armor and lifestyle gear." />
+  <meta property="og:title" content="GrimHide — Premium Store">
+  <meta property="og:description" content="Premium handcrafted leather armor and lifestyle gear.">
+  <meta property="og:image" content="images/og-image.jpg">
+  <meta property="og:url" content="https://yourdomain.com">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="/css/products.css">
+  <link rel="stylesheet" href="css/main.css">
+  
+   <!-- Font Awesome CDN for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <title>GrimHide — Products</title>
+</head>
+
+<body>
+
+  <!-- ============================
+       Header
+  ============================ -->
+  <header>
+    <nav class="nav" aria-label="Primary">
+      <a href="index.html" class="brand"><span class="dot"></span> GrimHide</a>
+      <ul class="desk-links">
+        <li><a class="link" href="index.html#home">Home</a></li>
+        <li><a class="link" href="#shop">Products</a></li>
+        <li><a class="link" href="index.html#about">About</a></li>
+        <li><a class="link" href="index.html#contact">Contact</a></li>
+      </ul>
+      <div class="search" role="search">
+        <label for="q" class="sr-only">Search products</label>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 21l-4.35-4.35m2.02-5.15a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <input id="q" type="search" placeholder="Search products…" aria-label="Search products" />
+      </div>
+      <button class="pill cart-btn" id="openCart" aria-label="Open cart">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 3h2l.4 2M7 13h10l3-8H6.4M7 13L5.4 5M7 13l-2 7h14M10 21a1 1 0 100-2 1 1 0 000 2zm8 0a1 1 0 100-2 1 1 0 000 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Cart <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Mobile Nav -->
+  <aside class="mobile-nav" id="mnav" aria-hidden="true">
+    <h3>Menu</h3>
+    <ul>
+      <li><a href="index.html#home">Home</a></li>
+      <li><a href="#shop">Products</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </aside>
+
+  <!-- ============================
+       Products Section
+  ============================ -->
+  <section class="section" id="shop" aria-label="Products">
+    <h2 class="reveal">All Products</h2>
+    <p class="lead reveal">Discover our complete collection of premium leather goods.</p>
+    
+    <!-- Category Chips -->
+    <div class="chips" role="tablist" aria-label="Filter by category">
+      <button class="chip active" data-cat="all">All</button>
+      <button class="chip" data-cat="armor">Armor</button>
+      <button class="chip" data-cat="belts">Belts</button>
+      <button class="chip" data-cat="bags">Bags</button>
+      <button class="chip" data-cat="accessories">Accessories</button>
+    </div>
+
+    <div class="toolbar reveal">
+      <label for="sort">Sort</label>
+      <select id="sort" aria-label="Sort products">
+        <option value="pop">Most popular</option>
+        <option value="lh">Price: Low to High</option>
+        <option value="hl">Price: High to Low</option>
+        <option value="az">Name: A → Z</option>
+        <option value="za">Name: Z → A</option>
+      </select>
+    </div>
+
+    <div class="grid" id="grid">
+      <!-- Card 1 -->
+      <article class="card reveal" data-name="Warrior Armor" data-price="299" data-cat="armor">
+        <span class="badge">Hot</span>
+        <div class="img"><img src="/images/product1/front.avif" alt="Warrior Armor" loading="lazy"></div>
+        <div class="shine"></div>
+        <div class="body">
+          <h3>Warrior Armor</h3>
+          <p class="muted">Top-quality leather armor for ultimate protection.</p>
+          <div class="price">$299</div>
+          <button class="btn add" data-id="p1">Add to Cart</button>
+          <button class="btn view" data-id="p1">View Details</button>
+        </div>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="card reveal" data-name="Ranger Armor" data-price="279" data-cat="armor">
+        <div class="img"><img src="/images/product2/front.webp" alt="Ranger Armor" loading="lazy"></div>
+        <div class="shine"></div>
+        <div class="body">
+          <h3>Ranger Armor</h3>
+          <p class="muted">Lightweight armor for agility and style.</p>
+          <div class="price">$279</div>
+          <button class="btn add" data-id="p2">Add to Cart</button>
+          <button class="btn view" data-id="p2">View Details</button>
+        </div>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="card reveal" data-name="Assassin Armor" data-price="349" data-cat="armor">
+        <div class="img"><img src="/images/product3/front.avif" alt="Assassin Armor" loading="lazy"></div>
+        <div class="shine"></div>
+        <div class="body">
+          <h3>Assassin Armor</h3>
+          <p class="muted">Sleek design for stealth and protection.</p>
+          <div class="price">$349</div>
+          <button class="btn add" data-id="p3">Add to Cart</button>
+          <button class="btn view" data-id="p3">View Details</button>
+        </div>
+      </article>
+
+      <!-- Card 4 -->
+      <article class="card reveal" data-name="Knight Armor" data-price="399" data-cat="armor">
+        <div class="img"><img src="images/product4.webp" alt="Knight Armor" loading="lazy"></div>
+        <div class="shine"></div>
+        <div class="body">
+          <h3>Knight Armor</h3>
+          <p class="muted">Heavy-duty leather armor for true warriors.</p>
+          <div class="price">$399</div>
+          <button class="btn add" data-id="p4">Add to Cart</button>
+          <button class="btn view" data-id="p4">View Details</button>
+        </div>
+      </article>
+
+      <!-- Card 5 -->
+      <article class="card reveal" data-name="Paladin Armor" data-price="369" data-cat="armor">
+        <div class="img"><img src="images/product5.webp" alt="Paladin Armor" loading="lazy"></div>
+        <div class="shine"></div>
+        <div class="body">
+          <h3>Paladin Armor</h3>
+          <p class="muted">Divine design with high durability and style.</p>
+          <div class="price">$369</div>
+          <button class="btn add" data-id="p5">Add to Cart</button>
+          <button class="btn view" data-id="p5">View Details</button>
+        </div>
+      </article>
+
+      <!-- Card 6 -->
+      <article class="card reveal" data-name="Hunter Armor" data-price="289" data-cat="armor">
+        <div class="img"><img src="images/product6.webp" alt="Hunter Armor" loading="lazy"></div>
+        <div class="shine"></div>
+        <div class="body">
+          <h3>Hunter Armor</h3>
+          <p class="muted">Perfect blend of comfort, protection, and mobility.</p>
+          <div class="price">$289</div>
+          <button class="btn add" data-id="p6">Add to Cart</button>
+          <button class="btn view" data-id="p6">View Details</button>
+        </div>
+      </article>
+
+      <!-- Card 7 -->
+      <article class="card reveal" data-name="Gladiator Armor" data-price="319" data-cat="armor">
+        <div class="img"><img src="images/product7.webp" alt="Gladiator Armor" loading="lazy"></div>
+        <div class="shine"></div>
+        <div class="body">
+          <h3>Gladiator Armor</h3>
+          <p class="muted">Battle-ready armor with a fierce design.</p>
+          <div class="price">$319</div>
+          <button class="btn add" data-id="p7">Add to Cart</button>
+          <button class="btn view" data-id="p7">View Details</button>
+        </div>
+      </article>
+
+      <!-- Card 8 -->
+      <article class="card reveal" data-name="Berserker Armor" data-price="429" data-cat="armor">
+        <span class="badge">New</span>
+        <div class="img"><img src="images/product8.webp" alt="Berserker Armor" loading="lazy"></div>
+        <div class="shine"></div>
+        <div class="body">
+          <h3>Berserker Armor</h3>
+          <p class="muted">Unleash raw power with maximum protection.</p>
+          <div class="price">$429</div>
+          <button class="btn add" data-id="p8">Add to Cart</button>
+          <button class="btn view" data-id="p8">View Details</button>
+        </div>
+      </article>
+
+      <!-- Card 9 -->
+      <article class="card reveal" data-name="Leather Belt" data-price="89" data-cat="belts">
+        <span class="badge">Hot</span>
+        <div class="img"><img src="images/belt1.webp" alt="Leather Belt" loading="lazy"></div>
+        <div class="shine"></div>
+        <div class="body">
+          <h3>Leather Belt</h3>
+          <p class="muted">Premium leather belt with antique buckle.</p>
+          <div class="price">$89</div>
+          <button class="btn add" data-id="p9">Add to Cart</button>
+          <button class="btn view" data-id="p9">View Details</button>
+        </div>
+      </article>
+
+      <!-- Card 10 -->
+      <article class="card reveal" data-name="Messenger Bag" data-price="149" data-cat="bags">
+        <div class="img"><img src="images/bag1.webp" alt="Messenger Bag" loading="lazy"></div>
+        <div class="shine"></div>
+        <div class="body">
+          <h3>Messenger Bag</h3>
+          <p class="muted">Handcrafted leather messenger bag for daily use.</p>
+          <div class="price">$149</div>
+          <button class="btn add" data-id="p10">Add to Cart</button>
+          <button class="btn view" data-id="p10">View Details</button>
+        </div>
+      </article>
+
+      <!-- Card 11 -->
+      <article class="card reveal" data-name="Gloves" data-price="79" data-cat="accessories">
+        <div class="img"><img src="images/gloves1.webp" alt="Gloves" loading="lazy"></div>
+        <div class="shine"></div>
+        <div class="body">
+          <h3>Gloves</h3>
+          <p class="muted">Premium leather gloves for protection and style.</p>
+          <div class="price">$79</div>
+          <button class="btn add" data-id="p11">Add to Cart</button>
+          <button class="btn view" data-id="p11">View Details</button>
+        </div>
+      </article>
+
+      <!-- Card 12 -->
+      <article class="card reveal" data-name="Shoulder Guard" data-price="199" data-cat="armor">
+        <div class="img"><img src="images/shoulder1.webp" alt="Shoulder Guard" loading="lazy"></div>
+        <div class="shine"></div>
+        <div class="body">
+          <h3>Shoulder Guard</h3>
+          <p class="muted">Ergonomic shoulder guards for maximum mobility.</p>
+          <div class="price">$199</div>
+          <button class="btn add" data-id="p12">Add to Cart</button>
+          <button class="btn view" data-id="p12">View Details</button>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============================
+       Promo Marquee
+  ============================ -->
+  <div class="promo" aria-hidden="true">
+    <div class="marquee">
+      <div class="marquee-content">
+        <span>⚡ Limited-time: Free shipping on orders over $200</span>
+        <span>🎁 Bundle & save up to 20%</span>
+        <span>💳 Secure checkout • 30-day returns</span>
+        <span>⚡ Limited-time: Free shipping on orders over $200</span>
+        <span>🎁 Bundle & save up to 20%</span>
+        <span>💳 Secure checkout • 30-day returns</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================
+       Footer
+  ============================ -->
+  <footer>
+    <div class="foot">
+      <div>
+        <h4>About GrimHide</h4>
+        <p class="muted">Premium leather goods engineered for durability and design. Our artisans craft every stitch with precision so you can move with confidence.</p>
+      </div>
+      <div>
+        <h4>Links</h4>
+        <ul class="footer-links">
+          <li><a href="index.html#home">Home</a></li>
+          <li><a href="#shop">Products</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+          <li><a href="#">Policies</a></li>
+        </ul>
+      </div>
+      <div id="contact">
+        <h4>Contact</h4>
+        <p class="muted">support@grimhide.store<br/>+92 305 8754141</p>
+        <div class="social">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="copy">© 2025 GrimHide. All rights reserved.</div>
+  </footer>
+
+  <!-- ============================
+       Cart Drawer
+  ============================ -->
+  <div class="drawer-backdrop" id="backdrop"></div>
+  <aside class="drawer" id="drawer" aria-label="Cart drawer" aria-hidden="true">
+    <header>
+      <strong>Your Cart</strong>
+      <button class="pill" id="closeCart" aria-label="Close cart">Close</button>
+    </header>
+    <div class="cart-items" id="cartItems"></div>
+    <footer>
+      <div class="tot"><span>Subtotal</span><strong id="subtotal">$0.00</strong></div>
+      <button class="btn" id="checkout">Checkout</button>
+    </footer>
+  </aside>
+
+  <!-- ===============
+       Scripts
+  ================ -->
+  <script>
+    // Handle product detail navigation
+    document.addEventListener('click', function(e) {
+      if (e.target.classList.contains('view')) {
+        const id = e.target.dataset.id;
+        window.location.href = `product-detail.html?id=${id}`;
+      }
+    });
+    
+    // Mobile menu toggle
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mnav');
+    
+    hamburger.addEventListener('click', () => {
+      const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
+      hamburger.setAttribute('aria-expanded', !isExpanded);
+      mobileNav.setAttribute('aria-hidden', isExpanded);
+      mobileNav.classList.toggle('active');
+    });
+    
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!mobileNav.contains(e.target) && !hamburger.contains(e.target) && 
+          !mobileNav.hasAttribute('aria-hidden') && mobileNav.getAttribute('aria-hidden') === 'false') {
+        hamburger.setAttribute('aria-expanded', 'false');
+        mobileNav.setAttribute('aria-hidden', 'true');
+        mobileNav.classList.remove('active');
+      }
+    });
+    
+    // Category filtering
+    const chips = document.querySelectorAll('.chip');
+    const cards = document.querySelectorAll('.card');
+    
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        // Remove active class from all chips
+        chips.forEach(c => c.classList.remove('active'));
+        // Add active class to clicked chip
+        chip.classList.add('active');
+        
+        const category = chip.dataset.cat;
+        
+        cards.forEach(card => {
+          if (category === 'all' || card.dataset.cat === category) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+    
+    // Sort functionality
+    const sortSelect = document.getElementById('sort');
+    const grid = document.getElementById('grid');
+    
+    sortSelect.addEventListener('change', () => {
+      const sortBy = sortSelect.value;
+      const cardsArray = Array.from(cards);
+      
+      cardsArray.sort((a, b) => {
+        const priceA = parseInt(a.dataset.price);
+        const priceB = parseInt(b.dataset.price);
+        const nameA = a.dataset.name.toLowerCase();
+        const nameB = b.dataset.name.toLowerCase();
+        
+        switch(sortBy) {
+          case 'lh':
+            return priceA - priceB;
+          case 'hl':
+            return priceB - priceA;
+          case 'az':
+            return nameA.localeCompare(nameB);
+          case 'za':
+            return nameB.localeCompare(nameA);
+          default:
+            return 0; // Default: no sorting
+        }
+      });
+      
+      // Clear grid and append sorted cards
+      grid.innerHTML = '';
+      cardsArray.forEach(card => {
+        grid.appendChild(card);
+      });
+    });
+    
+    // Reveal animations
+    const reveals = document.querySelectorAll('.reveal');
+    
+    const revealOnScroll = () => {
+      reveals.forEach(reveal => {
+        const elementTop = reveal.getBoundingClientRect().top;
+        const elementVisible = 150;
+        
+        if (elementTop < window.innerHeight - elementVisible) {
+          reveal.classList.add('active');
+        }
+      });
+    };
+    
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll(); // Initial check
+  </script>
+  
+  <script src="js/main.js"></script>
+</body>
+</html>
