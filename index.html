@@ -4,14 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="GrimHide - Premium handcrafted leather armor and lifestyle gear." />
+  <meta name="keywords" content="leather armor, premium leather, handmade leather, leather gear">
   <meta property="og:title" content="GrimHide — Premium Store">
   <meta property="og:description" content="Premium handcrafted leather armor and lifestyle gear.">
   <meta property="og:image" content="images/og-image.jpg">
-  <meta property="og:url" content="https://yourdomain.com  ">
+  <meta property="og:url" content="https://grimhide-store.netlify.app">
   <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://grimhide-store.netlify.app">
   <link rel="stylesheet" href="/css/main.css">
   <!-- Font Awesome CDN for icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css  ">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
   <title>GrimHide — Premium Store</title>
 </head>
 <body>
@@ -57,7 +60,7 @@
     <h3>Menu</h3>
     <ul>
       <li><a href="#home">Home</a></li>
-      <li><a href="products.html">Products</a></li> <!-- ✅ Changed -->
+      <li><a href="products.html">Products</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -74,7 +77,7 @@
         <h1 class="reveal">Welcome to <span class="accent">GrimHide</span></h1>
         <p class="reveal">Premium leather armor and lifestyle gear crafted for performance, protection, and presence. Built to last. Designed to impress.</p>
         <div class="cta reveal">
-          <a href="products.html" class="btn primary">Shop Now</a> <!-- ✅ Changed -->
+          <a href="products.html" class="btn primary">Shop Now</a>
           <a href="#about" class="btn ghost">Why GrimHide?</a>
         </div>
         <div class="stats reveal" aria-label="Store stats">
@@ -84,7 +87,7 @@
         </div>
       </div>
       <div class="hero-card reveal" aria-label="Featured item">
-        <img src="images/product3.webp" alt="Assassin Armor product photo" loading="lazy" />
+        <img src="images/product3.webp" alt="Assassin Armor - Featured Product" loading="lazy" />
       </div>
     </div>
   </section>
@@ -101,128 +104,130 @@
   <!-- ============================
        Products
   ============================ -->
-  <section class="section" id="shop" aria-label="Products">
-    <h2 class="reveal">Featured Products</h2>
-    <p class="lead reveal">Curated bestsellers. Real leather. Real craft. Limited stock.</p>
-    <div class="toolbar reveal">
-      <label for="sort">Sort</label>
-      <select id="sort" aria-label="Sort products">
-        <option value="pop">Most popular</option>
-        <option value="lh">Price: Low to High</option>
-        <option value="hl">Price: High to Low</option>
-        <option value="az">Name: A → Z</option>
-        <option value="za">Name: Z → A</option>
-      </select>
-    </div>
+  <main>
+    <section class="section" id="shop" aria-label="Products">
+      <h2 class="reveal">Featured Products</h2>
+      <p class="lead reveal">Curated bestsellers. Real leather. Real craft. Limited stock.</p>
+      <div class="toolbar reveal">
+        <label for="sort">Sort</label>
+        <select id="sort" aria-label="Sort products">
+          <option value="pop">Most popular</option>
+          <option value="lh">Price: Low to High</option>
+          <option value="hl">Price: High to Low</option>
+          <option value="az">Name: A → Z</option>
+          <option value="za">Name: Z → A</option>
+        </select>
+      </div>
 
-    <div class="grid" id="grid">
-      <!-- Card 1 -->
-      <article class="card reveal" data-name="Warrior Armor" data-price="299" data-cat="armor">
-        <span class="badge">Hot</span>
-        <div class="img"><img src="images/product1/front.avif" alt="Warrior Armor" loading="lazy"></div>
-        <div class="shine"></div>
-        <div class="body">
-          <h3>Warrior Armor</h3>
-          <p class="muted">Top-quality leather armor for ultimate protection.</p>
-          <div class="price">$299</div>
-          <button class="btn add" data-id="p1">Add to Cart</button>
-          <button class="btn view" data-id="p1">View Details</button>
-        </div>
-      </article>
+      <div class="grid" id="grid">
+        <!-- Card 1 -->
+        <article class="card reveal" data-name="Warrior Armor" data-price="299" data-cat="armor">
+          <span class="badge">Hot</span>
+          <div class="img"><img src="images/product1/front.avif" alt="Warrior Armor - Premium Leather Protection" loading="lazy"></div>
+          <div class="shine"></div>
+          <div class="body">
+            <h3>Warrior Armor</h3>
+            <p class="muted">Top-quality leather armor for ultimate protection.</p>
+            <div class="price">$299</div>
+            <button class="btn add" data-id="p1">Add to Cart</button>
+            <button class="btn view" data-id="p1">View Details</button>
+          </div>
+        </article>
 
-      <!-- Card 2 -->
-      <article class="card reveal" data-name="Ranger Armor" data-price="279" data-cat="armor">
-        <div class="img"><img src="images/product2/front.webp" alt="Ranger Armor" loading="lazy"></div>
-        <div class="shine"></div>
-        <div class="body">
-          <h3>Ranger Armor</h3>
-          <p class="muted">Lightweight armor for agility and style.</p>
-          <div class="price">$279</div>
-          <button class="btn add" data-id="p2">Add to Cart</button>
-          <button class="btn view" data-id="p2">View Details</button>
-        </div>
-      </article>
+        <!-- Card 2 -->
+        <article class="card reveal" data-name="Ranger Armor" data-price="279" data-cat="armor">
+          <div class="img"><img src="images/product2/front.webp" alt="Ranger Armor - Lightweight Leather Gear" loading="lazy"></div>
+          <div class="shine"></div>
+          <div class="body">
+            <h3>Ranger Armor</h3>
+            <p class="muted">Lightweight armor for agility and style.</p>
+            <div class="price">$279</div>
+            <button class="btn add" data-id="p2">Add to Cart</button>
+            <button class="btn view" data-id="p2">View Details</button>
+          </div>
+        </article>
 
-      <!-- Card 3 -->
-      <article class="card reveal" data-name="Assassin Armor" data-price="349" data-cat="armor">
-        <div class="img"><img src="images/product3/front.avif" alt="Assassin Armor" loading="lazy"></div>
-        <div class="shine"></div>
-        <div class="body">
-          <h3>Assassin Armor</h3>
-          <p class="muted">Sleek design for stealth and protection.</p>
-          <div class="price">$349</div>
-          <button class="btn add" data-id="p3">Add to Cart</button>
-          <button class="btn view" data-id="p3">View Details</button>
-        </div>
-      </article>
+        <!-- Card 3 -->
+        <article class="card reveal" data-name="Assassin Armor" data-price="349" data-cat="armor">
+          <div class="img"><img src="images/product3/front.avif" alt="Assassin Armor - Sleek Leather Design" loading="lazy"></div>
+          <div class="shine"></div>
+          <div class="body">
+            <h3>Assassin Armor</h3>
+            <p class="muted">Sleek design for stealth and protection.</p>
+            <div class="price">$349</div>
+            <button class="btn add" data-id="p3">Add to Cart</button>
+            <button class="btn view" data-id="p3">View Details</button>
+          </div>
+        </article>
 
-      <!-- Card 4 -->
-      <article class="card reveal" data-name="Knight Armor" data-price="399" data-cat="armor">
-        <div class="img"><img src="images/product4.webp" alt="Knight Armor" loading="lazy"></div>
-        <div class="shine"></div>
-        <div class="body">
-          <h3>Knight Armor</h3>
-          <p class="muted">Heavy-duty leather armor for true warriors.</p>
-          <div class="price">$399</div>
-          <button class="btn add" data-id="p4">Add to Cart</button>
-          <button class="btn view" data-id="p4">View Details</button>
-        </div>
-      </article>
+        <!-- Card 4 -->
+        <article class="card reveal" data-name="Knight Armor" data-price="399" data-cat="armor">
+          <div class="img"><img src="images/product4.webp" alt="Knight Armor - Heavy-Duty Leather Protection" loading="lazy"></div>
+          <div class="shine"></div>
+          <div class="body">
+            <h3>Knight Armor</h3>
+            <p class="muted">Heavy-duty leather armor for true warriors.</p>
+            <div class="price">$399</div>
+            <button class="btn add" data-id="p4">Add to Cart</button>
+            <button class="btn view" data-id="p4">View Details</button>
+          </div>
+        </article>
 
-      <!-- Card 5 -->
-      <article class="card reveal" data-name="Paladin Armor" data-price="369" data-cat="armor">
-        <div class="img"><img src="images/product5.webp" alt="Paladin Armor" loading="lazy"></div>
-        <div class="shine"></div>
-        <div class="body">
-          <h3>Paladin Armor</h3>
-          <p class="muted">Divine design with high durability and style.</p>
-          <div class="price">$369</div>
-          <button class="btn add" data-id="p5">Add to Cart</button>
-          <button class="btn view" data-id="p5">View Details</button>
-        </div>
-      </article>
+        <!-- Card 5 -->
+        <article class="card reveal" data-name="Paladin Armor" data-price="369" data-cat="armor">
+          <div class="img"><img src="images/product5.webp" alt="Paladin Armor - Divine Leather Design" loading="lazy"></div>
+          <div class="shine"></div>
+          <div class="body">
+            <h3>Paladin Armor</h3>
+            <p class="muted">Divine design with high durability and style.</p>
+            <div class="price">$369</div>
+            <button class="btn add" data-id="p5">Add to Cart</button>
+            <button class="btn view" data-id="p5">View Details</button>
+          </div>
+        </article>
 
-      <!-- Card 6 -->
-      <article class="card reveal" data-name="Hunter Armor" data-price="289" data-cat="armor">
-        <div class="img"><img src="images/product6.webp" alt="Hunter Armor" loading="lazy"></div>
-        <div class="shine"></div>
-        <div class="body">
-          <h3>Hunter Armor</h3>
-          <p class="muted">Perfect blend of comfort, protection, and mobility.</p>
-          <div class="price">$289</div>
-          <button class="btn add" data-id="p6">Add to Cart</button>
-          <button class="btn view" data-id="p6">View Details</button>
-        </div>
-      </article>
+        <!-- Card 6 -->
+        <article class="card reveal" data-name="Hunter Armor" data-price="289" data-cat="armor">
+          <div class="img"><img src="images/product6.webp" alt="Hunter Armor - Comfort and Mobility Leather Gear" loading="lazy"></div>
+          <div class="shine"></div>
+          <div class="body">
+            <h3>Hunter Armor</h3>
+            <p class="muted">Perfect blend of comfort, protection, and mobility.</p>
+            <div class="price">$289</div>
+            <button class="btn add" data-id="p6">Add to Cart</button>
+            <button class="btn view" data-id="p6">View Details</button>
+          </div>
+        </article>
 
-      <!-- Card 7 -->
-      <article class="card reveal" data-name="Gladiator Armor" data-price="319" data-cat="armor">
-        <div class="img"><img src="images/product7.webp" alt="Gladiator Armor" loading="lazy"></div>
-        <div class="shine"></div>
-        <div class="body">
-          <h3>Gladiator Armor</h3>
-          <p class="muted">Battle-ready armor with a fierce design.</p>
-          <div class="price">$319</div>
-          <button class="btn add" data-id="p7">Add to Cart</button>
-          <button class="btn view" data-id="p7">View Details</button>
-        </div>
-      </article>
+        <!-- Card 7 -->
+        <article class="card reveal" data-name="Gladiator Armor" data-price="319" data-cat="armor">
+          <div class="img"><img src="images/product7.webp" alt="Gladiator Armor - Battle-Ready Leather Gear" loading="lazy"></div>
+          <div class="shine"></div>
+          <div class="body">
+            <h3>Gladiator Armor</h3>
+            <p class="muted">Battle-ready armor with a fierce design.</p>
+            <div class="price">$319</div>
+            <button class="btn add" data-id="p7">Add to Cart</button>
+            <button class="btn view" data-id="p7">View Details</button>
+          </div>
+        </article>
 
-      <!-- Card 8 -->
-      <article class="card reveal" data-name="Berserker Armor" data-price="429" data-cat="armor">
-        <span class="badge">New</span>
-        <div class="img"><img src="images/product8.webp" alt="Berserker Armor" loading="lazy"></div>
-        <div class="shine"></div>
-        <div class="body">
-          <h3>Berserker Armor</h3>
-          <p class="muted">Unleash raw power with maximum protection.</p>
-          <div class="price">$429</div>
-          <button class="btn add" data-id="p8">Add to Cart</button>
-          <button class="btn view" data-id="p8">View Details</button>
-        </div>
-      </article>
-    </div>
-  </section>
+        <!-- Card 8 -->
+        <article class="card reveal" data-name="Berserker Armor" data-price="429" data-cat="armor">
+          <span class="badge">New</span>
+          <div class="img"><img src="images/product8.webp" alt="Berserker Armor - Maximum Protection Leather Gear" loading="lazy"></div>
+          <div class="shine"></div>
+          <div class="body">
+            <h3>Berserker Armor</h3>
+            <p class="muted">Unleash raw power with maximum protection.</p>
+            <div class="price">$429</div>
+            <button class="btn add" data-id="p8">Add to Cart</button>
+            <button class="btn view" data-id="p8">View Details</button>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
 
  <!-- ============================
        Promo Marquee
@@ -233,7 +238,7 @@
       <span>⚡ Limited-time: Free shipping on orders over $200</span>
       <span>🎁 Bundle & save up to 20%</span>
       <span>💳 Secure checkout • 30-day returns</span>
-      <span>⚡ Limited-time: Free shipping on orders over $200</span> <!-- Duplicate for smooth loop -->
+      <span>⚡ Limited-time: Free shipping on orders over $200</span>
       <span>🎁 Bundle & save up to 20%</span>
       <span>💳 Secure checkout • 30-day returns</span>
     </div>
@@ -277,7 +282,7 @@
         <h4>Links</h4>
         <ul class="footer-links">
           <li><a href="#home">Home</a></li>
-          <li><a href="products.html">Products</a></li> <!-- ✅ Changed -->
+          <li><a href="products.html">Products</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#contact">Contact</a></li>
           <li><a href="#">Policies</a></li>

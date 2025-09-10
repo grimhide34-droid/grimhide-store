@@ -826,7 +826,7 @@
             cart = JSON.parse(e.newValue || '[]');
             updateOrderSummary(); // ✅ Update instantly when cart changes
           } catch (error) {
-            console.error('Error parsing cart data:', error);
+            console.error('Error parsing cart ', error);
             cart = [];
             updateOrderSummary();
           }
@@ -924,7 +924,14 @@
           const formData = new FormData(document.getElementById('checkoutForm'));
           const customerInfo = {};
           for (let [key, value] of formData.entries()) {
-            customerInfo[key] = value;
+            // Handle file inputs separately
+            if (key === 'paymentScreenshot' && value instanceof File) {
+              // For now, we'll just store the file name
+              // In a real application, you would upload the file to a server
+              customerInfo[key] = value.name;
+            } else {
+              customerInfo[key] = value;
+            }
           }
           
           // ✅ Save Order Data (Pending Status)
@@ -944,17 +951,28 @@
             paymentStatus: 'pending' // ✅ Pending payment status
           };
           
-          // ✅ Store Pending Order Data
-          localStorage.setItem('pendingOrder', JSON.stringify(orderData));
-          
-          // ✅ Clear Cart
-          localStorage.removeItem(CART_KEY);
-          
-          // ✅ Update Cart Count in Header
-          cartCountEl.textContent = '0';
-          
-          // ✅ Redirect to Order Confirmation Page (Pending Status)
-          window.location.href = 'order-confirmation.html';
+          try {
+            // ✅ Store Pending Order Data
+            localStorage.setItem('pendingOrder', JSON.stringify(orderData));
+            
+            // ✅ Clear Cart
+            localStorage.removeItem(CART_KEY);
+            
+            // ✅ Update Cart Count in Header
+            cartCountEl.textContent = '0';
+            
+            // ✅ Redirect to Order Confirmation Page (Pending Status)
+            // Use a small delay to ensure localStorage is updated before redirecting
+            setTimeout(() => {
+              window.location.href = 'order-confirmation.html';
+            }, 500);
+          } catch (error) {
+            console.error('Error saving order:', error);
+            showNotification('There was an error processing your order. Please try again.');
+            // Reset button state
+            placeOrderBtn.innerHTML = originalHTML;
+            placeOrderBtn.disabled = false;
+          }
         });
       }
       
@@ -1126,6 +1144,118 @@
       updateOrderSummary();
     });
   </script>
+  <script>
+document.addEventListener('DOMContentLoaded', function() {
+  // ... (other code remains the same)
+
+  // Form Validation Function - UPDATED VERSION
+  function validateForm() {
+    // Reset all error states first
+    document.querySelectorAll('.form-group input, .form-group select, .form-group textarea').forEach(field => {
+      field.classList.remove('error');
+    });
+    
+    let isValid = true;
+    
+    // Check all required fields
+    const requiredFields = document.querySelectorAll('[required]');
+    requiredFields.forEach(field => {
+      if (!field.value || field.value.trim() === '') {
+        field.classList.add('error');
+        isValid = false;
+      }
+    });
+    
+    // Email validation
+    const emailField = document.getElementById('email');
+    if (emailField && emailField.value) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(emailField.value)) {
+        emailField.classList.add('error');
+        showNotification('Please enter a valid email address');
+        isValid = false;
+      }
+    }
+    
+    // Phone validation (simple)
+    const phoneField = document.getElementById('phone');
+    if (phoneField && phoneField.value) {
+      const phoneRegex = /^[0-9+\-\s()]+$/;
+      if (!phoneRegex.test(phoneField.value)) {
+        phoneField.classList.add('error');
+        showNotification('Please enter a valid phone number');
+        isValid = false;
+      }
+    }
+    
+    // Credit card validation if credit card is selected
+    const selectedPayment = document.querySelector('.payment-method.selected');
+    if (selectedPayment && selectedPayment.dataset.method === 'card') {
+      const cardNumber = document.getElementById('cardNumber');
+      const expiry = document.getElementById('expiry');
+      const cvv = document.getElementById('cvv');
+      const cardName = document.getElementById('cardName');
+      
+      if (cardNumber && (!cardNumber.value || !/^\d{4} \d{4} \d{4} \d{4}$/.test(cardNumber.value))) {
+        cardNumber.classList.add('error');
+        showNotification('Please enter a valid 16-digit card number');
+        isValid = false;
+      }
+      
+      if (expiry && (!expiry.value || !/^\d{2}\/\d{2}$/.test(expiry.value))) {
+        expiry.classList.add('error');
+        showNotification('Please enter a valid expiry date (MM/YY)');
+        isValid = false;
+      }
+      
+      if (cvv && (!cvv.value || !/^\d{3,4}$/.test(cvv.value))) {
+        cvv.classList.add('error');
+        showNotification('Please enter a valid CVV (3-4 digits)');
+        isValid = false;
+      }
+      
+      if (cardName && (!cardName.value || cardName.value.trim() === '')) {
+        cardName.classList.add('error');
+        showNotification('Please enter the name on the card');
+        isValid = false;
+      }
+    }
+    
+    // Validate payment screenshot for bank transfer
+    if (selectedPayment && selectedPayment.dataset.method === 'bank') {
+      const screenshot = document.getElementById('paymentScreenshot');
+      if (screenshot && (!screenshot.files || screenshot.files.length === 0)) {
+        screenshot.classList.add('error');
+        showNotification('Please upload a payment screenshot');
+        isValid = false;
+      }
+    }
+    
+    // Special validation for country/state
+    const countrySelect = document.getElementById('country');
+    const stateGroup = document.getElementById('stateGroup');
+    const stateSelect = document.getElementById('state');
+    
+    if (countrySelect && countrySelect.value === 'usa') {
+      if (stateGroup && stateGroup.style.display !== 'none') {
+        if (stateSelect && (!stateSelect.value || stateSelect.value.trim() === '')) {
+          stateSelect.classList.add('error');
+          showNotification('Please select a state');
+          isValid = false;
+        }
+      }
+    }
+    
+    if (!isValid) {
+      showNotification('Please fill in all required fields correctly');
+    }
+    
+    return isValid;
+  }
+  
+  // ... (rest of the code remains the same)
+});
+</script>
   <script src="js/main.js"></script>
 </body>
 </html>
