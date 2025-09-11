@@ -1,4 +1,3 @@
-
 /* main.js — Clean & Optimized GrimHide interactions */
 
 // --- Utility Functions ---
@@ -56,7 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const checkoutBtn = $('#checkout');
 
   // --- State ---
-  const CART_KEY = 'grimhide_cart_v1';
+  // Use consistent key across all files
+  const CART_KEY = 'grimhide_cart'; // Updated for consistency
   let cart = JSON.parse(localStorage.getItem(CART_KEY) || '[]');
 
   // --- Accessibility helpers ---
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Back-to-top button logic ---
     const backToTopBtn = $('#backToTop');
     if (backToTopBtn) {
-        if (y > 400) {
+        if (y > window.innerHeight / 2) { // Half screen scroll ke baad show karo
             backToTopBtn.classList.add('show');
         } else if (y <= 100) {
             backToTopBtn.classList.remove('show');
@@ -211,7 +211,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const money = n => `$${n.toFixed(2)}`;
 
   const updateCartUI = () => {
-    cartCountEl.textContent = cart.reduce((s, i) => s + i.qty, 0);
+    const count = cart.reduce((sum, item) => sum + (parseInt(item.qty, 10) || 1), 0);
+    cartCountEl.textContent = count;
     cartItemsEl.innerHTML = '';
     let sub = 0;
 
@@ -228,7 +229,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     cart.forEach(item => {
-      sub += item.price * item.qty;
+      // Ensure qty is a number
+      const itemQty = parseInt(item.qty, 10) || 1;
+      const itemPrice = parseFloat(item.price) || 0;
+      sub += itemPrice * itemQty;
       const row = document.createElement('div');
       row.className = 'cart-item';
       row.innerHTML = `
@@ -237,18 +241,18 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
         <div class="cart-item-details">
           <h4 class="cart-item-name">${item.name}</h4>
-          <div class="cart-item-price">${money(item.price)}</div>
+          <div class="cart-item-price">${money(itemPrice)}</div>
           <div class="cart-item-controls">
             <button class="cart-item-btn dec" aria-label="Decrease">−</button>
-            <span class="cart-item-qty">${item.qty}</span>
+            <span class="cart-item-qty">${itemQty}</span>
             <button class="cart-item-btn inc" aria-label="Increase">+</button>
           </div>
-          <div class="cart-item-total">${money(item.price * item.qty)}</div>
+          <div class="cart-item-total">${money(itemPrice * itemQty)}</div>
           <button class="cart-item-remove">Remove</button>
         </div>
       `;
-      $('.inc', row).addEventListener('click', () => { item.qty++; refreshCart(); });
-      $('.dec', row).addEventListener('click', () => { item.qty = Math.max(1, item.qty - 1); refreshCart(); });
+      $('.inc', row).addEventListener('click', () => { item.qty = itemQty + 1; refreshCart(); });
+      $('.dec', row).addEventListener('click', () => { item.qty = Math.max(1, itemQty - 1); refreshCart(); });
       $('.cart-item-remove', row).addEventListener('click', () => { cart = cart.filter(c => c.id !== item.id); refreshCart(); });
       cartItemsEl.appendChild(row);
     });
@@ -271,6 +275,61 @@ document.addEventListener('DOMContentLoaded', () => {
     drawer?.setAttribute('aria-hidden', 'true');
     drawer.releaseTrap?.();
   };
+
+  // --- Main Add to Cart Function (for external use) ---
+  function addToCart(id, name, price, img, qty = 1) {
+    // For buttons on index/products page
+    if (arguments.length === 1 && typeof id === 'object') {
+        // Assume it's an event from an add button
+        const btn = id;
+        const card = btn.closest('.card');
+        id = btn.dataset.id || card?.dataset.name;
+        name = card?.dataset.name;
+        price = parseFloat(card?.dataset.price) || 0;
+        img = card?.querySelector('img')?.src || '';
+        qty = 1; // Default qty for these buttons
+    }
+
+    const existing = cart.find(x => x.id === id);
+    if (existing) {
+      existing.qty = (parseInt(existing.qty, 10) || 1) + (parseInt(qty, 10) || 1);
+    } else {
+      cart.push({ id, name, price: parseFloat(price) || 0, img, qty: parseInt(qty, 10) || 1 });
+    }
+    refreshCart();
+
+    // Toast notification
+    showToast(`${name || 'Item'} added to cart!`);
+
+    // Cart count bounce animation
+    if (cartCountEl) {
+      cartCountEl.classList.add('bounce');
+      setTimeout(() => cartCountEl.classList.remove('bounce'), 600);
+    }
+
+    // Open cart drawer after adding item
+    openDrawer();
+  }
+
+  // --- Main Buy Now Function (for external use) ---
+  function buyNow(id, name, price, img, qty = 1) {
+    // Clear cart for "buy now" functionality
+    cart = [];
+    
+    // Add item to cart
+    cart.push({ id, name, price: parseFloat(price) || 0, img, qty: parseInt(qty, 10) || 1 });
+    
+    // Save and update
+    refreshCart();
+    
+    // Show notification
+    showToast(`Added ${name || 'item'} to cart! Redirecting to checkout...`);
+    
+    // Redirect to checkout after a short delay
+    setTimeout(() => {
+        window.location.href = 'checkout.html';
+    }, 1500);
+  }
 
   // --- Cart Event Listeners ---
   openCartBtn?.addEventListener('click', function(e) {
@@ -322,7 +381,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // --- Enhanced Add to Cart with Animations ---
-  addBtns.forEach(btn => btn.addEventListener('click', () => {
+  addBtns.forEach(btn => btn.addEventListener('click', (e) => {
     // Button pulse animation
     btn.classList.add('pulse');
     setTimeout(() => btn.classList.remove('pulse'), 600);
@@ -332,28 +391,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const name = card?.dataset.name;
     const price = parseFloat(card?.dataset.price) || 0;
     const img = card?.querySelector('img')?.src || '';
-    const existing = cart.find(x => x.id === id);
-    if (existing) {
-      existing.qty++;
-    } else {
-      cart.push({ id, name, price, img, qty: 1 });
-    }
-    refreshCart();
+
+    // Use the main addToCart function
+    addToCart(id, name, price, img, 1);
 
     // Fly to cart animation
     flyToCart(card?.querySelector('img'));
-
-    // Toast notification
-    showToast('Added to cart');
-
-    // Cart count bounce animation
-    if (cartCountEl) {
-      cartCountEl.classList.add('bounce');
-      setTimeout(() => cartCountEl.classList.remove('bounce'), 600);
-    }
-
-    // Open cart drawer after adding item
-    openDrawer();
   }));
 
   // --- Search, filter & sort ---
@@ -447,6 +490,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // --- Expose functions to global scope for other pages ---
+  window.mainAddToCart = addToCart;
+  window.mainBuyNow = buyNow;
+
   // --- Init ---
   refreshCart();
   index = buildIndex();
@@ -454,4 +501,3 @@ document.addEventListener('DOMContentLoaded', () => {
   document.body.classList.add('loaded');
 
 });
-

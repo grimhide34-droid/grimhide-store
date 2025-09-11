@@ -91,7 +91,7 @@ const productDatabase = {
     description: "Heavy-duty leather armor for true warriors.",
     image: "https://images.unsplash.com/photo-1630713814061-4d5e114d88d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
     images: [
-      "https://images.unsplash.com/photo-1630713814061-4d5e114d88d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+      "    https://images.unsplash.com/photo-1630713814061-4d5e114d88d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
     ],
     features: [
       "Heavy duty construction",
@@ -114,9 +114,9 @@ const productDatabase = {
     basePrice: 369.00,
     originalPrice: 419.00,
     description: "Divine design with high durability and style.",
-    image: "https://images.unsplash.com/photo-1617118684470-8d871c853b7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    image: "    https://images.unsplash.com/photo-1617118684470-8d871c853b7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
     images: [
-      "https://images.unsplash.com/photo-1617118684470-8d871c853b7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+      "    https://images.unsplash.com/photo-1617118684470-8d871c853b7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
     ],
     features: [
       "Elegant design",
@@ -253,9 +253,9 @@ function buyNow(productId, quantity = 1) {
 // UI Updates
 // ==============================
 function updateCartUI() {
-  // Update cart count in header
+  // Update cart count in header - ✅ FIXED ID
   const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-  const cartCountElement = document.getElementById('cart-count');
+  const cartCountElement = document.getElementById('cartCount'); // ✅ Changed from 'cart-count' to 'cartCount'
   if (cartCountElement) {
     cartCountElement.textContent = cartCount;
     cartCountElement.style.display = cartCount > 0 ? 'block' : 'none';
@@ -439,6 +439,43 @@ function loadProduct(productId) {
       specsTable.appendChild(tr);
     });
   }
+  
+  // Setup gallery navigation after images are loaded
+  setupGalleryNavigation();
+}
+
+// ==============================
+// Gallery Navigation Function - FIXED
+// ==============================
+function setupGalleryNavigation() {
+  const prevBtn = document.getElementById('gallery-prev');
+  const nextBtn = document.getElementById('gallery-next');
+  
+  if (prevBtn && nextBtn) {
+    prevBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const thumbs = document.querySelectorAll('.thumb-item');
+      if (thumbs.length > 0) {
+        const currentIndex = Array.from(thumbs).findIndex(thumb => thumb.classList.contains('active'));
+        let newIndex = currentIndex > 0 ? currentIndex - 1 : thumbs.length - 1;
+        if (thumbs[newIndex]) {
+          thumbs[newIndex].click();
+        }
+      }
+    });
+    
+    nextBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const thumbs = document.querySelectorAll('.thumb-item');
+      if (thumbs.length > 0) {
+        const currentIndex = Array.from(thumbs).findIndex(thumb => thumb.classList.contains('active'));
+        let newIndex = currentIndex < thumbs.length - 1 ? currentIndex + 1 : 0;
+        if (thumbs[newIndex]) {
+          thumbs[newIndex].click();
+        }
+      }
+    });
+  }
 }
 
 // ==============================
@@ -472,7 +509,7 @@ function setupRelatedProducts() {
 }
 
 // ==============================
-// Event Listeners
+// Event Listeners - COMPLETELY FIXED
 // ==============================
 document.addEventListener('DOMContentLoaded', function() {
   // Get product ID from URL
@@ -505,37 +542,92 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
   
-  // Cart drawer controls
-  const cartBtn = document.getElementById('cart-btn');
+  // Cart drawer controls - ✅ COMPLETELY FIXED
+  const cartBtn = document.getElementById('openCart'); // ✅ This is correct
   const drawerBackdrop = document.getElementById('drawer-backdrop');
   const drawerClose = document.getElementById('drawer-close');
-  const checkoutBtn = document.getElementById('checkout-btn'); // Checkout button
+  const cartDrawer = document.getElementById('cart-drawer');
+  const checkoutBtn = document.getElementById('checkout-btn');
   
-  if (cartBtn && drawerBackdrop && drawerClose) {
-    cartBtn.addEventListener('click', function() {
+  // Debug
+  console.log("Cart Elements Found:", {
+    cartBtn: !!cartBtn,
+    drawerBackdrop: !!drawerBackdrop,
+    drawerClose: !!drawerClose,
+    cartDrawer: !!cartDrawer
+  });
+  
+  // ✅ Add event listener for ESC key to close cart
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      if (drawerBackdrop && drawerBackdrop.classList.contains('show')) {
+        drawerBackdrop.classList.remove('show');
+        if (cartDrawer) {
+          cartDrawer.classList.remove('open');
+        }
+      }
+    }
+  });
+  
+  if (cartBtn && drawerBackdrop && drawerClose && cartDrawer) {
+    console.log("Setting up cart drawer events");
+    
+    // ✅ Open cart drawer
+    cartBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      console.log("Cart button clicked");
+      
+      // Force show with both classes and direct styles
       drawerBackdrop.classList.add('show');
-      document.getElementById('cart-drawer')?.classList.add('open');
-      updateCartDrawer();
+      drawerBackdrop.style.opacity = '1';
+      drawerBackdrop.style.pointerEvents = 'auto';
+      
+      cartDrawer.classList.add('open');
+      cartDrawer.style.transform = 'translateX(0)';
+      
+      updateCartDrawer(); // Update cart contents when opening
     });
     
-    drawerClose.addEventListener('click', function() {
+    // ✅ Close cart drawer with X button
+    drawerClose.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      console.log("Close button clicked");
+      
       drawerBackdrop.classList.remove('show');
-      document.getElementById('cart-drawer')?.classList.remove('open');
+      drawerBackdrop.style.opacity = '0';
+      drawerBackdrop.style.pointerEvents = 'none';
+      
+      cartDrawer.classList.remove('open');
+      cartDrawer.style.transform = 'translateX(100%)';
     });
     
+    // ✅ Close cart drawer by clicking outside
     drawerBackdrop.addEventListener('click', function(e) {
       if (e.target === drawerBackdrop) {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log("Backdrop clicked");
+        
         drawerBackdrop.classList.remove('show');
-        document.getElementById('cart-drawer')?.classList.remove('open');
+        drawerBackdrop.style.opacity = '0';
+        drawerBackdrop.style.pointerEvents = 'none';
+        
+        cartDrawer.classList.remove('open');
+        cartDrawer.style.transform = 'translateX(100%)';
       }
     });
+  } else {
+    console.log("Some cart drawer elements are missing!");
   }
   
   // ✅ Proceed to Checkout button functionality
   if (checkoutBtn) {
     checkoutBtn.addEventListener('click', function(e) {
-      e.preventDefault(); // Prevent default form submission
-      proceedToCheckout(); // Call checkout function
+      e.preventDefault();
+      e.stopPropagation();
+      proceedToCheckout();
     });
   }
   
@@ -589,29 +681,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ==============================
-// Gallery Navigation
-// ==============================
-document.addEventListener('click', function(e) {
-  // Gallery navigation
-  if (e.target.id === 'gallery-prev' || e.target.id === 'gallery-next') {
-    const thumbs = document.querySelectorAll('.thumb-item');
-    if (thumbs.length > 0) {
-      const currentIndex = Array.from(thumbs).findIndex(thumb => thumb.classList.contains('active'));
-      let newIndex;
-      
-      if (e.target.id === 'gallery-prev') {
-        newIndex = currentIndex > 0 ? currentIndex - 1 : thumbs.length - 1;
-      } else {
-        newIndex = currentIndex < thumbs.length - 1 ? currentIndex + 1 : 0;
-      }
-      
-      // Click the new thumbnail to update main image
-      thumbs[newIndex].click();
-    }
-  }
-});
-
-// ==============================
 // Proceed to Checkout Function
 // ==============================
 function proceedToCheckout() {
@@ -626,7 +695,11 @@ function proceedToCheckout() {
   const cartDrawer = document.getElementById('cart-drawer');
   if (drawerBackdrop && cartDrawer) {
     drawerBackdrop.classList.remove('show');
+    drawerBackdrop.style.opacity = '0';
+    drawerBackdrop.style.pointerEvents = 'none';
+    
     cartDrawer.classList.remove('open');
+    cartDrawer.style.transform = 'translateX(100%)';
   }
   
   // Redirect to checkout page

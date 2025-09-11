@@ -8,242 +8,139 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-  /* ====== Reset & Base ====== */
-  :root{
-    --bg-1:#070608;
-    --bg-2:#111214;
-    --panel:#151618;
-    --accent-1:#f4b400; /* gold */
-    --accent-2:#ff4c29; /* orange */
-    --muted:#b9bcc3;
-    --glass: rgba(255,255,255,0.03);
-    --glass-2: rgba(255,255,255,0.02);
-    --radius-lg:20px;
-    --radius:12px;
-    --shadow-heavy: 0 30px 60px rgba(2,6,14,0.6);
-    --speed:.28s;
-  }
-  *{box-sizing:border-box}
-  html,body{height:100%}
-  body{
-    margin:0;
-    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    background:
-      radial-gradient(600px 400px at 10% 10%, rgba(244,180,0,0.035), transparent),
-      radial-gradient(600px 400px at 90% 90%, rgba(255,76,41,0.03), transparent),
-      linear-gradient(180deg,var(--bg-1),var(--bg-2));
-    color:#eee;
-    -webkit-font-smoothing:antialiased;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:28px;
-  }
+:root{
+  --bg-1:#070608; --bg-2:#111214; --panel:#151618;
+  --accent-1:#f4b400; --accent-2:#ff4c29;
+  --muted:#b9bcc3; --glass: rgba(255,255,255,0.03);
+  --radius-lg:20px; --radius:12px; --shadow-heavy: 0 30px 60px rgba(2,6,14,0.6); --speed:.28s;
+}
+*{box-sizing:border-box;}
+html,body{height:100%; margin:0; font-family:"Inter", system-ui; -webkit-font-smoothing:antialiased; display:flex; align-items:center; justify-content:center; padding:28px; background:
+  radial-gradient(600px 400px at 10% 10%, rgba(244,180,0,0.035), transparent),
+  radial-gradient(600px 400px at 90% 90%, rgba(255,76,41,0.03), transparent),
+  linear-gradient(180deg,var(--bg-1),var(--bg-2));
+  color:#eee;
+}
 
-  /* ====== Container ====== */
-  .wrap{
-    width:100%;
-    max-width:1100px;
-    border-radius:var(--radius-lg);
-    overflow:hidden;
-    display:grid;
-    grid-template-columns:1fr 520px;
-    gap:0;
-    background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.02));
-    box-shadow: var(--shadow-heavy);
-    position:relative;
-  }
+.wrap{
+  width:100%; max-width:1100px; border-radius:var(--radius-lg); overflow:hidden;
+  display:grid; grid-template-columns:1fr 520px; gap:0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.02));
+  box-shadow: var(--shadow-heavy); position:relative;
+}
+.wrap::before, .wrap::after{
+  content:""; position:absolute; border-radius:50%; filter: blur(60px); opacity:0.10; pointer-events:none;
+}
+.wrap::before{ width:420px; height:420px; top:-120px; right:-100px; background:linear-gradient(90deg,var(--accent-1),var(--accent-2));}
+.wrap::after{ width:520px; height:520px; bottom:-160px; left:-120px; background:linear-gradient(90deg,var(--accent-2),var(--accent-1));}
 
-  /* decorative circles */
-  .wrap::before, .wrap::after{
-    content:"";
-    position:absolute;
-    border-radius:50%;
-    filter: blur(60px);
-    opacity:0.10;
-    pointer-events:none;
-  }
-  .wrap::before{ width:420px; height:420px; top:-120px; right:-100px; background:linear-gradient(90deg,var(--accent-1),var(--accent-2));}
-  .wrap::after{ width:520px; height:520px; bottom:-160px; left:-120px; background:linear-gradient(90deg,var(--accent-2),var(--accent-1));}
+.left{
+  background: linear-gradient(160deg,#111214, #0c0d0f); padding:56px 48px;
+  display:flex; flex-direction:column; justify-content:center; gap:22px; position:relative;
+}
+.brand-badge{
+  width:92px;height:92px;border-radius:22px;
+  background:linear-gradient(135deg,var(--accent-1),var(--accent-2));
+  display:flex; align-items:center; justify-content:center;
+  box-shadow: 0 12px 30px rgba(255,180,0,0.12);
+  font-weight:800;font-size:28px;color:#090709;
+}
+.brand-title{
+  font-size:40px; font-weight:800; line-height:1; letter-spacing:-0.6px;
+  background: linear-gradient(90deg,var(--accent-1), #fff);
+  -webkit-background-clip:text; background-clip:text; color:transparent; margin-top:6px;
+}
+.brand-sub{ color:var(--muted); max-width:380px; font-size:16px; line-height:1.7; }
+.features{ margin-top:8px; display:flex; flex-direction:column; gap:12px; }
+.feature{ display:flex; gap:12px; align-items:flex-start; color:var(--muted); font-size:15px; }
+.feature i{ color:var(--accent-1); font-size:18px; margin-top:3px; }
+.stats{ display:flex; gap:28px; margin-top:18px; }
+.stat{ display:flex; flex-direction:column; }
+.stat .num{ font-weight:800; color:var(--accent-1); font-size:22px }
+.stat .lbl{ color:var(--muted); font-size:12px; letter-spacing:1px; text-transform:uppercase }
 
-  /* ====== Left - Visual / Brand ====== */
-  .left{
-    background: linear-gradient(160deg,#111214, #0c0d0f);
-    padding:56px 48px;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    gap:22px;
-    position:relative;
-  }
-  .brand-badge{
-    width:92px;height:92px;border-radius:22px;
-    background:linear-gradient(135deg,var(--accent-1),var(--accent-2));
-    display:flex;align-items:center;justify-content:center;
-    box-shadow: 0 12px 30px rgba(255,180,0,0.12);
-    font-weight:800;font-size:28px;color:#090709;
-  }
-  .brand-title{
-    font-size:40px;
-    font-weight:800;
-    line-height:1;
-    letter-spacing:-0.6px;
-    background: linear-gradient(90deg,var(--accent-1), #fff);
-    -webkit-background-clip:text; background-clip:text; color:transparent;
-    margin-top:6px;
-  }
-  .brand-sub{
-    color:var(--muted);
-    max-width:380px;
-    font-size:16px;
-    line-height:1.7;
-  }
-  .features{
-    margin-top:8px;
-    display:flex;flex-direction:column;gap:12px;
-  }
-  .feature{
-    display:flex;gap:12px;align-items:flex-start;color:var(--muted);
-    font-size:15px;
-  }
-  .feature i{
-    color:var(--accent-1);
-    font-size:18px;margin-top:3px;
-  }
-  .stats{
-    display:flex;gap:28px;margin-top:18px;
-  }
-  .stat{
-    display:flex;flex-direction:column;
-  }
-  .stat .num{font-weight:800;color:var(--accent-1);font-size:22px}
-  .stat .lbl{color:var(--muted);font-size:12px;letter-spacing:1px;text-transform:uppercase}
+.right{
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.03)); padding:48px;
+  display:flex; align-items:center; justify-content:center; position:relative;
+}
+.card{
+  width:100%; max-width:420px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));
+  border-radius:16px; padding:28px;
+  box-shadow: 0 6px 30px rgba(2,6,14,0.6);
+  border:1px solid rgba(255,255,255,0.03); position:relative; overflow:hidden;
+}
+.card h2{ margin:0 0 6px 0; font-size:22px; font-weight:800; color:#fff; }
+.card p.lead{ margin:0 0 18px 0; color:var(--muted); font-size:14px }
 
-  /* ====== Right - Form ====== */
-  .right{
-    background:
-      linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.03));
-    padding:48px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    position:relative;
-  }
-  .card{
-    width:100%;
-    max-width:420px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));
-    border-radius:16px;
-    padding:28px;
-    box-shadow: 0 6px 30px rgba(2,6,14,0.6);
-    border:1px solid rgba(255,255,255,0.03);
-    position:relative;
-    overflow:hidden;
-  }
-  .card h2{ margin:0 0 6px 0; font-size:22px; font-weight:800; color:#fff; }
-  .card p.lead{ margin:0 0 18px 0; color:var(--muted); font-size:14px }
+.form-row{ display:flex; flex-direction:column; gap:14px; margin-top:8px }
+label{ font-size:13px; color:var(--muted); display:block; margin-bottom:6px }
+.input{
+  width:100%; padding:14px 16px; border-radius:12px;
+  border:1px solid rgba(255,255,255,0.04);
+  background: linear-gradient(180deg, rgba(255,255,255,0.018), rgba(255,255,255,0.01));
+  color:#fff; outline:none; font-size:15px;
+  transition: box-shadow var(--speed), transform var(--speed), border-color var(--speed);
+  position:relative;
+}
+.input:focus{ box-shadow: 0 6px 24px rgba(244,180,0,0.10); transform: translateY(-2px); border-color: rgba(244,180,0,0.9); }
+.input.with-icon{ padding-left:44px; }
+.input-icon{ position:absolute; left:12px; top:50%; transform:translateY(-50%); color:var(--muted); font-size:16px; pointer-events:none; }
 
-  /* glass inputs */
-  .form-row{ display:flex; flex-direction:column; gap:14px; margin-top:8px }
-  label{ font-size:13px; color:var(--muted); display:block; margin-bottom:6px }
-  .input{
-    width:100%;
-    padding:14px 16px;
-    border-radius:12px;
-    border:1px solid rgba(255,255,255,0.04);
-    background: linear-gradient(180deg, rgba(255,255,255,0.018), rgba(255,255,255,0.01));
-    color:#fff;
-    outline:none;
-    font-size:15px;
-    transition: box-shadow var(--speed), transform var(--speed), border-color var(--speed);
-    position:relative;
-  }
-  .input:focus{
-    box-shadow: 0 6px 24px rgba(244,180,0,0.10);
-    transform: translateY(-2px);
-    border-color: rgba(244,180,0,0.9);
-  }
-  .input.with-icon{ padding-left:44px; }
-  .input-icon{
-    position:absolute; left:12px; top:50%; transform:translateY(-50%); color:var(--muted); font-size:16px; pointer-events:none;
-  }
-  .field-wrap{ position:relative }
+.pw-toggle{ position:absolute; right:10px; top:50%; transform:translateY(-50%); background:transparent;border:0;color:var(--muted); cursor:pointer; font-size:16px; }
 
-  /* password toggle */
-  .pw-toggle{
-    position:absolute; right:10px; top:50%; transform:translateY(-50%); background:transparent;border:0;color:var(--muted); cursor:pointer; font-size:16px;
-  }
-  .row-between{ display:flex; align-items:center; justify-content:space-between; margin-top:6px; gap:10px }
-  .remember{ display:flex; align-items:center; gap:8px; color:var(--muted); font-size:14px }
-  .remember input{ width:18px; height:18px; accent-color:var(--accent-1) }
+.row-between{ display:flex; align-items:center; justify-content:space-between; margin-top:6px; gap:10px }
+.remember{ display:flex; align-items:center; gap:8px; color:var(--muted); font-size:14px }
+.remember input{ width:18px; height:18px; accent-color:var(--accent-1) }
 
-  /* main CTA */
-  .btn{
-    display:inline-flex; align-items:center; justify-content:center; gap:10px;
-    width:100%; padding:14px 16px; border-radius:12px; border:0; cursor:pointer;
-    font-weight:700; font-size:15px; transition: transform var(--speed), box-shadow var(--speed);
-  }
-  .btn-primary{
-    background: linear-gradient(90deg,var(--accent-1), var(--accent-2));
-    color:#0b0a08; box-shadow: 0 14px 40px rgba(244,180,0,0.12);
-  }
-  .btn-primary:hover{ transform: translateY(-4px); box-shadow: 0 20px 60px rgba(244,180,0,0.18) }
-  .btn-ghost{
-    background:transparent; color:var(--accent-1); border:1px solid rgba(244,180,0,0.14); font-weight:600;
-  }
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:10px;
+  width:100%; padding:14px 16px; border-radius:12px; border:0; cursor:pointer;
+  font-weight:700; font-size:15px; transition: transform var(--speed), box-shadow var(--speed);
+}
+.btn-primary{ background: linear-gradient(90deg,var(--accent-1), var(--accent-2)); color:#0b0a08; box-shadow: 0 14px 40px rgba(244,180,0,0.12); }
+.btn-primary:hover{ transform: translateY(-4px); box-shadow: 0 20px 60px rgba(244,180,0,0.18) }
+.btn-ghost{ background:transparent; color:var(--accent-1); border:1px solid rgba(244,180,0,0.14); font-weight:600; }
 
-  .divider{
-    display:flex; align-items:center; gap:12px; justify-content:center; margin:18px 0; color:var(--muted); font-size:13px;
-  }
-  .divider:before, .divider:after{ content:""; height:1px; flex:1; background:rgba(255,255,255,0.03) }
+.divider{ display:flex; align-items:center; gap:12px; justify-content:center; margin:18px 0; color:var(--muted); font-size:13px; }
+.divider:before, .divider:after{ content:""; height:1px; flex:1; background:rgba(255,255,255,0.03) }
 
-  .socials{ display:flex; gap:10px; flex-wrap:wrap }
-  .social{
-    flex:1 1 48%; display:inline-flex; gap:10px; align-items:center; justify-content:center;
-    padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,0.03); cursor:pointer; font-weight:700;
-    background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.02));
-  }
-  .social i{ width:20px; text-align:center }
-  .social.google{ color:#fff; background:linear-gradient(90deg,#dd4b39,#c23a2a) }
-  .social.apple{ color:#fff; background:#0b0b0b; border-color: rgba(255,255,255,0.06) }
-  .social.fb{ color:#fff; background:linear-gradient(90deg,#3b5998,#2d4373) }
+.socials{ display:flex; gap:10px; flex-wrap:wrap }
+.social{ flex:1 1 48%; display:inline-flex; gap:10px; align-items:center; justify-content:center;
+  padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,0.03); cursor:pointer; font-weight:700;
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.02));
+}
+.social i{ width:20px; text-align:center }
+.social.google{ color:#fff; background:linear-gradient(90deg,#dd4b39,#c23a2a) }
+.social.apple{ color:#fff; background:#0b0b0b; border-color: rgba(255,255,255,0.06) }
+.social.fb{ color:#fff; background:linear-gradient(90deg,#3b5998,#2d4373) }
 
-  .signup{ text-align:center; margin-top:14px; color:var(--muted); font-size:14px }
-  .signup a{ color:var(--accent-1); font-weight:700; text-decoration:none }
+.signup{ text-align:center; margin-top:14px; color:var(--muted); font-size:14px }
+.signup a{ color:var(--accent-1); font-weight:700; text-decoration:none }
 
-  /* modal */
-  .modal{
-    position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:9999;
-    background: linear-gradient(180deg, rgba(2,6,14,0.6), rgba(2,6,14,0.8));
-    padding:28px;
-  }
-  .modal.show{ display:flex }
-  .modal-card{
-    width:100%; max-width:420px; border-radius:14px; padding:20px 22px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.03));
-    border:1px solid rgba(255,255,255,0.03); box-shadow: 0 20px 60px rgba(2,6,14,0.7);
-  }
-  .modal h3{ margin:0 0 8px 0 }
-  .modal p{ margin:0 0 14px 0; color:var(--muted) }
+.modal{
+  position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:9999;
+  background: linear-gradient(180deg, rgba(2,6,14,0.6), rgba(2,6,14,0.8)); padding:28px;
+}
+.modal.show{ display:flex }
+.modal-card{
+  width:100%; max-width:420px; border-radius:14px; padding:20px 22px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.03));
+  border:1px solid rgba(255,255,255,0.03); box-shadow: 0 20px 60px rgba(2,6,14,0.7);
+  transform: translateY(-50px);
+  opacity: 0;
+  transition: all 0.35s ease;
+}
+.modal-card.show{ transform: translateY(0); opacity:1; }
+.modal h3{ margin:0 0 8px 0 }
+.modal p{ margin:0 0 14px 0; color:var(--muted) }
 
-  /* small screens */
-  @media (max-width:980px){
-    .wrap{ grid-template-columns: 1fr; max-width:760px }
-    .left{ order:2; padding:34px }
-    .right{ order:1; padding:28px }
-    .wrap::before, .wrap::after{ display:none }
-  }
-  @media (max-width:420px){
-    .brand-title{ font-size:28px }
-    .brand-badge{ width:72px; height:72px; font-size:22px }
-    .card{ padding:18px }
-  }
+@media (max-width:980px){ .wrap{ grid-template-columns: 1fr; max-width:760px } .left{ order:2; padding:34px } .right{ order:1; padding:28px } .wrap::before, .wrap::after{ display:none } }
+@media (max-width:420px){ .brand-title{ font-size:28px } .brand-badge{ width:72px; height:72px; font-size:22px } .card{ padding:18px } }
 </style>
 </head>
 <body>
 
-<!-- Container -->
 <div class="wrap" role="region" aria-label="GrimHide sign in">
-  <!-- Left visual -->
   <div class="left" aria-hidden="false">
     <div style="display:flex;gap:18px;align-items:center">
       <div class="brand-badge"><i class="fas fa-store"></i></div>
@@ -252,15 +149,12 @@
         <div style="color:var(--muted);font-size:13px;margin-top:6px">Premium leather & lifestyle — craft your legend.</div>
       </div>
     </div>
-
     <p class="brand-sub">Exclusive drops, handcrafted jackets and curated collections. Secure checkout and 24/7 premium support — join our community of bold creators.</p>
-
     <ul class="features" aria-hidden="true">
       <li class="feature"><i class="fas fa-check-circle"></i> Curated premium collections</li>
       <li class="feature"><i class="fas fa-shield-alt"></i> Secure payments & privacy</li>
       <li class="feature"><i class="fas fa-headset"></i> 24/7 premium support</li>
     </ul>
-
     <div class="stats" aria-hidden="true">
       <div class="stat"><div class="num">25K+</div><div class="lbl">customers</div></div>
       <div class="stat"><div class="num">50K+</div><div class="lbl">products</div></div>
@@ -268,12 +162,10 @@
     </div>
   </div>
 
-  <!-- Right form -->
   <div class="right">
     <div class="card" role="form" aria-labelledby="signin-title">
       <h2 id="signin-title">Welcome back</h2>
       <p class="lead">Sign in to your account to continue</p>
-
       <form id="loginForm" autocomplete="on" novalidate>
         <div class="form-row">
           <div class="field-wrap">
@@ -281,43 +173,35 @@
             <input id="email" class="input with-icon" type="email" placeholder="you@domain.com" required>
             <i class="input-icon fa fa-envelope"></i>
           </div>
-
           <div class="field-wrap" style="position:relative">
             <label for="password">Password</label>
             <input id="password" class="input with-icon" type="password" placeholder="••••••••" minlength="6" required>
             <i class="input-icon fa fa-lock"></i>
             <button type="button" class="pw-toggle" id="pwToggle" aria-label="Show password"><i class="fa fa-eye"></i></button>
           </div>
-
-          <div class="row-between" style="margin-top:4px">
+          <div class="row-between">
             <label class="remember"><input type="checkbox" id="remember"> Remember me</label>
-            <button type="button" class="btn-ghost" id="forgotBtn" style="background:transparent;border:0;color:var(--accent-1);text-decoration:underline;padding:6px 8px;font-weight:700">Forgot?</button>
+            <button type="button" class="btn-ghost" id="forgotBtn">Forgot?</button>
           </div>
-
           <button class="btn btn-primary" id="signinBtn" type="submit"><i class="fa fa-lock"></i> Sign in</button>
         </div>
       </form>
-
       <div class="divider"><span>Or continue with</span></div>
-
       <div class="socials" role="group" aria-label="social sign in">
         <button class="social google" id="btnGoogle"><i class="fab fa-google"></i> Google</button>
         <button class="social apple" id="btnApple"><i class="fab fa-apple"></i> Apple</button>
         <button class="social fb" id="btnFB"><i class="fab fa-facebook-f"></i> Facebook</button>
       </div>
-
-      <div class="signup">
-        New to GrimHide? <a href="#" id="createBtn">Create account</a>
-      </div>
+      <div class="signup">New to GrimHide? <a href="#" id="createBtn">Create account</a></div>
     </div>
   </div>
 </div>
 
-<!-- Modal: forgot -->
+<!-- Forgot Password Modal -->
 <div class="modal" id="modalForgot" role="dialog" aria-modal="true" aria-hidden="true">
-  <div class="modal-card" role="document">
+  <div class="modal-card">
     <h3>Reset your password</h3>
-    <p>Enter the email associated with your account. We'll send a reset link.</p>
+    <p>Enter your email associated with your account. We'll send a reset link.</p>
     <input id="resetEmail" class="input" type="email" placeholder="you@domain.com">
     <div style="display:flex;gap:10px;margin-top:12px">
       <button class="btn btn-primary" id="sendReset">Send link</button>
@@ -326,158 +210,76 @@
   </div>
 </div>
 
+<!-- Create Account Modal -->
+<div class="modal" id="modalCreate" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="modal-card">
+    <h3>Create your account</h3>
+    <p>Fill in your details to get started with GrimHide.</p>
+    <div class="form-row">
+      <input id="newName" class="input" type="text" placeholder="Full Name" required>
+      <input id="newEmail" class="input" type="email" placeholder="Email" required>
+      <input id="newPassword" class="input" type="password" placeholder="Password" required>
+    </div>
+    <div style="display:flex;gap:10px;margin-top:12px">
+      <button class="btn btn-primary" id="createAccountBtn">Create Account</button>
+      <button class="btn btn-ghost" id="closeCreateModal">Cancel</button>
+    </div>
+  </div>
+</div>
+
 <script>
-  // ====== Helpers ======
-  const qs = s => document.querySelector(s);
-  const qsa = s => document.querySelectorAll(s);
-  const emailEl = qs('#email');
-  const pwEl = qs('#password');
-  const form = qs('#loginForm');
-  const pwToggle = qs('#pwToggle');
-  const modal = qs('#modalForgot');
-  const forgotBtn = qs('#forgotBtn');
-  const closeModal = qs('#closeModal');
-  const sendReset = qs('#sendReset');
-  const resetEmail = qs('#resetEmail');
-  const createBtn = qs('#createBtn');
-  const btnGoogle = qs('#btnGoogle');
-  const btnApple = qs('#btnApple');
-  const btnFB = qs('#btnFB');
+const qs = s=>document.querySelector(s);
+const emailEl = qs('#email'), pwEl = qs('#password'), form = qs('#loginForm'), pwToggle = qs('#pwToggle');
+const modal = qs('#modalForgot'), forgotBtn = qs('#forgotBtn'), closeModal = qs('#closeModal'), sendReset = qs('#sendReset'), resetEmail = qs('#resetEmail');
+const createBtn = qs('#createBtn'), modalCreate = qs('#modalCreate'), closeCreateModal = qs('#closeCreateModal'), createAccountBtn = qs('#createAccountBtn');
+const btnGoogle=qs('#btnGoogle'), btnApple=qs('#btnApple'), btnFB=qs('#btnFB');
 
-  // small accessible toast (temporary)
-  function toast(message, success=true){
-    // create ephemeral toast
-    const t = document.createElement('div');
-    t.textContent = message;
-    t.style.position='fixed';
-    t.style.left='50%';
-    t.style.transform='translateX(-50%)';
-    t.style.bottom='32px';
-    t.style.background= success ? 'linear-gradient(90deg,var(--accent-1),var(--accent-2))' : 'rgba(255,75,75,0.95)';
-    t.style.color = success ? '#0b0a08' : '#fff';
-    t.style.padding='10px 16px';
-    t.style.borderRadius='999px';
-    t.style.boxShadow='0 8px 30px rgba(2,6,14,0.6)';
-    t.style.zIndex=99999;
-    t.style.fontWeight=700;
-    document.body.appendChild(t);
-    setTimeout(()=> t.style.opacity='0.01', 1800);
-    setTimeout(()=> t.remove(), 2200);
-  }
+function toast(msg,success=true){
+  const t = document.createElement('div');
+  t.textContent = msg;
+  t.style.position='fixed'; t.style.left='50%'; t.style.bottom='32px';
+  t.style.transform='translateX(-50%)'; t.style.background=success?'linear-gradient(90deg,var(--accent-1),var(--accent-2))':'rgba(255,75,75,0.95)';
+  t.style.color=success?'#0b0a08':'#fff'; t.style.padding='10px 16px'; t.style.borderRadius='999px';
+  t.style.boxShadow='0 8px 30px rgba(2,6,14,0.6)'; t.style.zIndex=99999; t.style.fontWeight=700;
+  document.body.appendChild(t);
+  setTimeout(()=>t.style.opacity='0.01',1800); setTimeout(()=>t.remove(),2200);
+}
 
-  // ====== Password toggle ======
-  pwToggle.addEventListener('click', () => {
-    const shown = pwEl.type === 'text';
-    pwEl.type = shown ? 'password' : 'text';
-    pwToggle.innerHTML = shown ? '<i class="fa fa-eye"></i>' : '<i class="fa fa-eye-slash"></i>';
-    pwEl.focus();
-  });
+pwToggle.addEventListener('click',()=>{const shown=pwEl.type==='text'; pwEl.type=shown?'password':'text'; pwToggle.innerHTML=shown?'<i class="fa fa-eye"></i>':'<i class="fa fa-eye-slash"></i>'; pwEl.focus();});
 
-  // ====== Form validation & demo login ======
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    const email = emailEl.value.trim();
-    const pw = pwEl.value;
+form.addEventListener('submit',e=>{
+  e.preventDefault();
+  const email=emailEl.value.trim(), pw=pwEl.value;
+  if(!email){ toast('Please enter your email',false); emailEl.focus(); return;}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ toast('Please enter a valid email',false); emailEl.focus(); return;}
+  if(!pw||pw.length<6){ toast('Password must be at least 6 characters',false); pwEl.focus(); return;}
+  const btn=qs('#signinBtn'); btn.disabled=true; btn.innerHTML='<i class="fa fa-spinner fa-spin"></i> Signing in...';
+  setTimeout(()=>{
+    if(email.toLowerCase()==='demo@grimhide.com'&&pw==='password123'){ toast('Login successful!',true); localStorage.setItem('grimhide_demo_token','DEMO_ABC_12345'); }
+    else{ toast('Invalid credentials — try demo@grimhide.com / password123',false); }
+    btn.disabled=false; btn.innerHTML='<i class="fa fa-lock"></i> Sign in';
+  },900);
+});
 
-    // basic validation
-    if(!email){
-      toast('Please enter your email', false);
-      emailEl.focus(); return;
-    }
-    // basic email regexp (light)
-    const emailOK = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    if(!emailOK){
-      toast('Please enter a valid email address', false);
-      emailEl.focus(); return;
-    }
-    if(!pw || pw.length < 6){
-      toast('Password must be at least 6 characters', false);
-      pwEl.focus(); return;
-    }
+forgotBtn.addEventListener('click',()=>{modal.classList.add('show'); modal.setAttribute('aria-hidden','false'); modal.querySelector('.modal-card').classList.add('show'); resetEmail.focus();});
+closeModal.addEventListener('click',()=>{modal.classList.remove('show'); modal.setAttribute('aria-hidden','true'); modal.querySelector('.modal-card').classList.remove('show');});
+sendReset.addEventListener('click',()=>{const v=resetEmail.value.trim(); if(!v){toast('Enter your email',false); resetEmail.focus(); return;} toast('Reset link sent to '+v,true); modal.classList.remove('show'); modal.setAttribute('aria-hidden','true'); resetEmail.value=''; modal.querySelector('.modal-card').classList.remove('show');});
+modal.addEventListener('click',(ev)=>{if(ev.target===modal){modal.classList.remove('show'); modal.setAttribute('aria-hidden','true'); modal.querySelector('.modal-card').classList.remove('show');}});
 
-    // simulate "loading"
-    const btn = qs('#signinBtn');
-    btn.disabled = true;
-    btn.style.transform = 'translateY(0)';
-    btn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Signing in...';
+createBtn.addEventListener('click',(e)=>{e.preventDefault(); modalCreate.classList.add('show'); modalCreate.setAttribute('aria-hidden','false'); modalCreate.querySelector('.modal-card').classList.add('show'); qs('#newName').focus();});
+closeCreateModal.addEventListener('click',()=>{modalCreate.classList.remove('show'); modalCreate.setAttribute('aria-hidden','true'); modalCreate.querySelector('.modal-card').classList.remove('show');});
+createAccountBtn.addEventListener('click',()=>{
+  const name=qs('#newName').value.trim(), email=qs('#newEmail').value.trim(), pw=qs('#newPassword').value;
+  if(!name||!email||!pw){ toast('All fields are required',false); return; }
+  toast('Account created! Welcome '+name,true);
+  modalCreate.classList.remove('show'); modalCreate.setAttribute('aria-hidden','true'); modalCreate.querySelector('.modal-card').classList.remove('show');
+});
 
-    // simulate network delay
-    setTimeout(() => {
-      // demo credential — you can change this or integrate backend
-      const demoEmail = 'demo@grimhide.com';
-      const demoPass = 'password123';
+btnGoogle.addEventListener('click',()=>{toast('Google sign-in clicked',true);});
+btnApple.addEventListener('click',()=>{toast('Apple sign-in clicked',true);});
+btnFB.addEventListener('click',()=>{toast('Facebook sign-in clicked',true);});
 
-      if(email.toLowerCase() === demoEmail && pw === demoPass){
-        toast('Login successful — welcome!', true);
-        // store demo token
-        localStorage.setItem('grimhide_demo_token', 'DEMO_ABC_12345');
-        // redirect simulation (commented)
-        // window.location.href = '/dashboard.html';
-      } else {
-        toast('Invalid credentials — try demo@grimhide.com / password123', false);
-      }
-
-      btn.disabled = false;
-      btn.innerHTML = '<i class="fa fa-lock"></i> Sign in';
-    }, 900);
-  });
-
-  // ====== Modal (forgot) ======
-  forgotBtn.addEventListener('click', () => {
-    modal.classList.add('show');
-    modal.setAttribute('aria-hidden','false');
-    resetEmail.focus();
-  });
-  closeModal.addEventListener('click', () => {
-    modal.classList.remove('show');
-    modal.setAttribute('aria-hidden','true');
-  });
-  sendReset.addEventListener('click', () => {
-    const v = resetEmail.value.trim();
-    if(!v) { toast('Enter your email to receive a reset link', false); resetEmail.focus(); return; }
-    // simulate sending
-    toast('Reset link sent to ' + v, true);
-    modal.classList.remove('show');
-    modal.setAttribute('aria-hidden','true');
-    resetEmail.value = '';
-  });
-
-  // close modal on outside click
-  modal.addEventListener('click', (ev) => {
-    if(ev.target === modal){ modal.classList.remove('show'); modal.setAttribute('aria-hidden','true'); }
-  });
-
-  // ====== Create account ======
-  createBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    toast('Redirecting to Create Account...', true);
-    setTimeout(()=> {
-      // demo: open external or later to signup page
-      // window.location.href = 'signup.html';
-    }, 700);
-  });
-
-  // ====== Social buttons (demo hooks) ======
-  btnGoogle.addEventListener('click', ()=> {
-    toast('Google sign-in clicked (demo)', true);
-    // integration point: start OAuth flow
-  });
-  btnApple.addEventListener('click', ()=> {
-    toast('Apple sign-in clicked (demo)', true);
-  });
-  btnFB.addEventListener('click', ()=> {
-    toast('Facebook sign-in clicked (demo)', true);
-  });
-
-  // ====== Accessibility: allow Enter to submit inside password field ======
-  pwEl.addEventListener('keydown', (ev) => {
-    if(ev.key === 'Enter') { form.requestSubmit(); }
-  });
-
-  // ====== small enhancement: autofill highlight ======
-  [emailEl, pwEl].forEach(el=>{
-    el.addEventListener('animationstart', (e)=>{});
-  });
+pwEl.addEventListener('keydown',ev=>{if(ev.key==='Enter'){form.requestSubmit();}});
 </script>
 </body>
 </html>

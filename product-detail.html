@@ -5,46 +5,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="GrimHide — Premium leather armor crafted for protection, style, and durability. Shop our collection of handcrafted warrior gear." />
   <title>Product Detail - GrimHide</title>
-  <link rel="stylesheet" href="/css/single-style.css"> 
+  <link rel="stylesheet" href="/css/single-style.css">  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
+
 <body>
-  <!-- Header (same as before - no changes needed) -->
-  <header class="header">
-    <div class="container">
-      <nav class="nav">
-        <a href="index.html" class="brand">
-          <span class="brand-dot"></span>
-          GrimHide
-        </a>
-        
-        <div class="nav-links">
-          <a href="index.html#home" class="nav-link">Home</a>
-          <a href="products.html" class="nav-link">Products</a> 
-          <a href="index.html#about" class="nav-link">About</a>
-          <a href="index.html#contact" class="nav-link">Contact</a>
-        </div>
-        
-        <div class="nav-actions">
-          <div class="search-bar">
-            <i class="fas fa-search search-icon"></i>
-            <input type="text" class="search-input" placeholder="Search products...">
-          </div>
-          
-          <button class="cart-btn" id="cart-btn">
-            <i class="fas fa-shopping-cart"></i>
-            <span class="cart-count" id="cart-count">0</span>
-          </button>
-         
-          
-          <button class="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-        </div>
-      </nav>
-    </div>
+  <!-- ============================
+       Header
+  ============================ -->
+  <header>
+    <nav class="nav" aria-label="Primary">
+      <span class="brand"><span class="dot"></span> GrimHide</span>
+      <ul class="desk-links">
+        <li><a class="link" href="index.html">Home</a></li>
+        <li><a class="link" href="products.html">Products</a></li>
+        <li><a class="link" href="about.html">About</a></li>
+        <li><a class="link" href="contact.html">Contact</a></li>
+      </ul>
+      <div class="search" role="search">
+        <label for="q" class="sr-only">Search products</label>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M21 21l-4.35-4.35m2.02-5.15a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <input id="q" type="search" placeholder="Search products…" aria-label="Search products" />
+      </div>
+      
+      <a href="login.html" class="pill login-link-button" aria-label="Login">
+        <svg class="login-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M15 3H7a2 2 0 00-2 2v14a2 2 0 002 2h8m4-9l-4-4m4 4l-4 4m0 0V7a2 2 0 012-2h2a2 2 0 012 2v10a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="login-text">Login</span>
+      </a>
+      
+      <button class="pill cart-btn" id="openCart" aria-label="Open cart">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M3 3h2l.4 2M7 13h10l3-8H6.4M7 13L5.4 5M7 13l-2 7h14M10 21a1 1 0 100-2 1 1 0 000 2zm8 0a1 1 0 100-2 1 1 0 000 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Cart <span class="cart-count" id="cartCount">0</span>
+      </button>
+      
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
   </header>
 
   <!-- Product Section -->
@@ -54,7 +57,7 @@
         <div class="breadcrumbs">
           <a href="index.html" class="breadcrumb-link">Home</a>
           <span class="breadcrumb-divider">/</span>
-          <a href="products.html" class="breadcrumb-link">Products</a> <!-- Link  -->
+          <a href="products.html" class="breadcrumb-link">Products</a>
           <span class="breadcrumb-divider">/</span>
           <span id="breadcrumb-product-name">Product</span> 
         </div>
@@ -72,7 +75,7 @@
             </div>
             
             <div class="gallery-thumbs" id="gallery-thumbs">
-              
+              <!-- Thumbnails will be populated dynamically -->
             </div>
           </div>
           
@@ -91,14 +94,14 @@
             </div>
             
             <div class="product-pricing">
-              <span class="price-current" id="price-current">$0.00</span> <!-- ✅ Dynamic price -->
-              <span class="price-original" id="price-original"></span> <!-- ✅ Dynamic original price -->
-              <span class="price-discount" id="price-discount"></span> <!-- ✅ Dynamic discount -->
+              <span class="price-current" id="price-current">$0.00</span>
+              <span class="price-original" id="price-original"></span>
+              <span class="price-discount" id="price-discount"></span>
             </div>
             
             <p class="product-description" id="product-description">
               Product description will appear here.
-            </p> <!-- ✅ Dynamic description -->
+            </p>
             
             <div class="product-options">
               <div class="option-group">
@@ -191,17 +194,17 @@
           </div>
           
           <div class="tab-content active" id="description">
-            <p id="product-description-tab">Product description will appear here.</p> <!-- ✅ Dynamic description -->
+            <p id="product-description-tab">Product description will appear here.</p>
             
             <h3>Features</h3>
             <ul class="features-list" id="features-list">
-              <!-- ✅ Dynamic features ayengi -->
+              <!-- Dynamic features will be populated here -->
             </ul>
           </div>
           
           <div class="tab-content" id="specifications">
             <table class="specs-table" id="specs-table">
-              <!-- ✅ Dynamic specifications ayengi -->
+              <!-- Dynamic specifications will be populated here -->
             </table>
           </div>
           
@@ -245,7 +248,7 @@
       </div>
     </section>
     
-    <!-- Related Products  -->
+    <!-- Related Products -->
     <section class="related-products">
       <div class="container">
         <h2 class="section-title">You Might Also Like</h2>
@@ -262,7 +265,7 @@
               <div class="card-price">
                 <span class="card-price-current">$279.00</span>
               </div>
-              <button class="btn btn-secondary card-action" data-id="p2">View Details</button> <!-- id add kiya -->
+              <button class="btn btn-secondary card-action" data-id="p2">View Details</button>
             </div>
           </div>
           
@@ -277,7 +280,7 @@
                 <span class="card-price-current">$349.00</span>
                 <span class="card-price-original">$399.00</span>
               </div>
-              <button class="btn btn-secondary card-action" data-id="p3">View Details</button> <!-- ✅ data-id add kiya -->
+              <button class="btn btn-secondary card-action" data-id="p3">View Details</button>
             </div>
           </div>
           
@@ -292,13 +295,13 @@
                 <span class="card-price-current">$399.00</span>
                 <span class="card-price-original">$449.00</span>
               </div>
-              <button class="btn btn-secondary card-action" data-id="p4">View Details</button> <!-- ✅ data-id add kiya -->
+              <button class="btn btn-secondary card-action" data-id="p4">View Details</button>
             </div>
           </div>
           
           <div class="product-card">
             <div class="card-image">
-              <img src="  https://images.unsplash.com/photo-1617118684470-8d871c853b7b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Paladin Armor" class="product-image">
+              <img src="https://images.unsplash.com/photo-1617118684470-8d871c853b7b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Paladin Armor" class="product-image">
               <div class="card-overlay"></div>
               <div class="card-badge">Best Seller</div>
             </div>
@@ -307,7 +310,7 @@
               <div class="card-price">
                 <span class="card-price-current">$369.00</span>
               </div>
-              <button class="btn btn-secondary card-action" data-id="p5">View Details</button> <!-- ✅ data-id add kiya -->
+              <button class="btn btn-secondary card-action" data-id="p5">View Details</button>
             </div>
           </div>
         </div>
@@ -315,7 +318,7 @@
     </section>
   </main>
   
-  <!-- Footer (same as before - no changes needed) -->
+  <!-- Footer -->
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
@@ -376,7 +379,6 @@
         <div class="drawer-close" id="drawer-close">×</div>
       </div>
       <div class="drawer-items" id="drawer-items">
-        <!-- Cart items will be populated here -->
         <div class="empty-cart-message" id="empty-cart">
           <i class="fas fa-shopping-cart"></i>
           <p>Your cart is empty</p>
@@ -393,5 +395,6 @@
   </div>
 
   <script src="/js/product-detail.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>

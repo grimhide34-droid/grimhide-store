@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us - GrimHide</title>
+<link rel="stylesheet" href="css/main.css">
+<script src="/js/cart-counter.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0f0f10;
+  --panel:#17181b;
+  --panel-2:#1f2126;
+  --panel-3:#252831;
+  --text:#eaeaea;
+  --muted:#b9bcc3;
+  --brand:#f4b400;
+  --brand-2:#ff4c29;
+  --ok:#10b981;
+  --radius:16px;
+  --radius-lg:24px;
+  --shadow:0 10px 30px rgba(0,0,0,.35);
+  --shadow-2:0 20px 50px rgba(0,0,0,.45);
+  --speed:.35s;
+  --gradient-brand:linear-gradient(135deg,var(--brand),var(--brand-2));
+  --gradient-brand-2:linear-gradient(90deg, var(--brand), var(--brand-2));
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6;}
+
+a{text-decoration:none;color:inherit;}
+h1, h2, h3, h4, h5, h6{font-family:'Playfair Display', serif;font-weight:700;}
+
+
+/* Hero */
+.hero{
+  height:85vh;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
+  background:linear-gradient(135deg, #1a1a1a, #111);
+  margin:30px;border-radius:var(--radius);box-shadow:var(--shadow-2);
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;top:0;left:0;width:100%;height:100%;
+  background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.8) 100%);
+  z-index:1;
+}
+.hero-content{
+  position:relative;z-index:2;padding:0 20px;
+}
+.hero h1{
+  font-size:70px; background:var(--gradient-brand); -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  margin-bottom:20px;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+.hero p{font-size:24px;color:var(--muted);max-width:800px;margin:0 auto 30px;}
+.hero-btn{
+  display:inline-block;background:var(--gradient-brand);color:var(--panel);padding:12px 30px;border-radius:var(--radius);font-weight:600;transition:var(--speed);
+  margin-top:20px;font-size:18px;box-shadow: 0 5px 15px rgba(244, 180, 0, 0.3);
+}
+.hero-btn:hover{
+  transform: translateY(-5px);box-shadow: 0 10px 25px rgba(244, 180, 0, 0.4);
+}
+
+/* Stats Section */
+.stats{
+  display:flex;justify-content:space-around;flex-wrap:wrap;padding:50px 50px 30px;
+  background:var(--panel-3);border-radius:var(--radius);margin:0 30px 30px;
+}
+.stat-item{
+  text-align:center;padding:20px;
+}
+.stat-item .number{
+  font-size:48px;font-weight:800;background:var(--gradient-brand);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  margin-bottom:10px;
+}
+.stat-item .label{
+  color:var(--muted);font-size:18px;
+}
+
+/* About Section */
+.about-section{
+  display:flex;flex-wrap:wrap;gap:60px;padding:80px 50px;align-items:center;background:var(--panel-2);border-radius:var(--radius);
+  margin:0 30px 30px;
+}
+.about-image{
+  flex:1;min-width:300px;perspective:1200px;
+  position:relative;
+}
+.about-image img{
+  width:100%;border-radius:var(--radius-lg);box-shadow:var(--shadow-2);transition:transform .8s;
+  position:relative;z-index:2;
+}
+.about-image::before{
+  content:'';position:absolute;top:20px;left:20px;width:100%;height:100%;
+  background:var(--gradient-brand);border-radius:var(--radius-lg);z-index:1;
+  filter:blur(20px);opacity:0.3;
+}
+.about-image:hover img{transform:rotateY(12deg) scale(1.02);}
+.about-text{flex:1;min-width:300px;}
+.about-text h2{
+  color:var(--brand);margin-bottom:15px;font-size:36px;position:relative;
+  padding-bottom:15px;
+}
+.about-text h2::after{
+  content:'';position:absolute;bottom:0;left:0;width:70px;height:4px;background:var(--gradient-brand);
+  border-radius:var(--radius);
+}
+.about-text p{
+  color:var(--muted);margin-bottom:20px;font-size:18px;line-height:1.7;
+}
+.about-text ul{
+  color:var(--muted);margin-bottom:20px;font-size:18px;line-height:1.7;
+  padding-left:20px;
+}
+.about-text ul li{
+  margin-bottom:12px;padding-left:30px;position:relative;
+}
+.about-text ul li::before{
+  content:'✔';position:absolute;left:0;color:var(--ok);font-weight:bold;
+}
+
+/* Timeline */
+.timeline{
+  background:var(--panel-3);padding:80px 50px;text-align:center;border-radius:var(--radius);
+  margin:0 30px 30px;position:relative;
+}
+.timeline::before{
+  content:'';position:absolute;top:0;left:0;width:100%;height:100%;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,100" stroke="rgba(244, 180, 0, 0.1)" stroke-width="0.5"/></svg>');
+  background-size:cover;opacity:0.3;
+}
+.timeline h2{
+  color:var(--brand);margin-bottom:70px;font-size:38px;
+  position:relative;display:inline-block;
+}
+.timeline h2::after{
+  content:'';position:absolute;bottom:-15px;left:50%;transform:translateX(-50%);
+  width:100px;height:4px;background:var(--gradient-brand);border-radius:var(--radius);
+}
+.timeline-container{
+  position:relative;max-width:1000px;margin:auto;
+}
+.timeline-container::after{
+  content:'';position:absolute;width:6px;background:var(--brand);top:0;bottom:0;left:50%;margin-left:-3px;
+  border-radius:var(--radius);
+}
+.timeline-item{
+  padding:25px 40px;position:relative;background:var(--panel-2);width:50%;
+  border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:50px;
+  transition:transform .5s, box-shadow .5s;
+  border: 1px solid rgba(244, 180, 0, 0.1);
+}
+.timeline-item:hover{
+  transform:translateY(-12px);box-shadow:var(--shadow-2);
+  border: 1px solid rgba(244, 180, 0, 0.3);
+}
+.timeline-item.left{left:0;}
+.timeline-item.right{left:50%;}
+.timeline-item::after{
+  content:'';position:absolute;width:20px;height:20px;background:var(--brand);top:20px;border-radius:50%;z-index:1;
+  box-shadow: 0 0 0 5px rgba(244, 180, 0, 0.2);
+}
+.timeline-item.left::after{right:-10px;}
+.timeline-item.right::after{left:-10px;}
+.timeline-item h3{
+  color:var(--brand);margin-bottom:10px;font-size:22px;
+}
+.timeline-item p{
+  color:var(--muted);
+}
+
+/* Team Section */
+.team-section{
+  padding:80px 50px;text-align:center;background:var(--panel-2);border-radius:var(--radius);
+  margin:0 30px 30px;
+}
+.team-section h2{
+  color:var(--brand);margin-bottom:60px;font-size:36px;
+  position:relative;display:inline-block;
+}
+.team-section h2::after{
+  content:'';position:absolute;bottom:-15px;left:50%;transform:translateX(-50%);
+  width:100px;height:4px;background:var(--gradient-brand);border-radius:var(--radius);
+}
+.team-cards{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:45px;
+}
+.team-card{
+  background:var(--panel-3);width:260px;padding:25px;border-radius:var(--radius);
+  box-shadow:var(--shadow);transition:transform .5s, box-shadow .5s;cursor:pointer;
+  position:relative;overflow:hidden;
+  border: 1px solid rgba(244, 180, 0, 0.1);
+}
+.team-card:hover{
+  transform:translateY(-15px) scale(1.05);box-shadow:var(--shadow-2);
+  border: 1px solid rgba(244, 180, 0, 0.3);
+}
+.team-card::before{
+  content:'';position:absolute;top:0;left:0;width:100%;height:5px;
+  background:var(--gradient-brand);
+}
+.team-card img{
+  width:100%;border-radius:var(--radius-lg);margin-bottom:20px;
+  border: 3px solid rgba(244, 180, 0, 0.2);
+}
+.team-card h3{
+  color:var(--brand);margin-bottom:5px;font-size:22px;
+}
+.team-card p{
+  color:var(--muted);font-size:16px;margin-bottom:15px;
+}
+.team-card .social{
+  display:flex;justify-content:center;gap:15px;margin-top:15px;
+}
+.team-card .social a{
+  display:flex;align-items:center;justify-content:center;
+  width:36px;height:36px;border-radius:50%;background:var(--panel);
+  transition:all 0.3s;
+}
+.team-card .social a:hover{
+  background:var(--gradient-brand);transform: translateY(-3px);
+}
+
+/* CTA Section */
+.cta-section{
+  background:linear-gradient(135deg, var(--panel-2), var(--panel-3));
+  padding:80px 50px;text-align:center;border-radius:var(--radius);
+  margin:0 30px 30px;position:relative;overflow:hidden;
+}
+.cta-section::before{
+  content:'';position:absolute;top:0;left:0;width:100%;height:100%;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><rect width="100" height="100" fill="none" stroke="rgba(244, 180, 0, 0.05)" stroke-width="0.5"/></svg>');
+  background-size:20px 20px;
+}
+.cta-section h2{
+  color:var(--brand);margin-bottom:20px;font-size:38px;
+}
+.cta-section p{
+  color:var(--muted);max-width:700px;margin:0 auto 30px;font-size:18px;
+}
+.cta-btn{
+  display:inline-block;background:var(--gradient-brand);color:var(--panel);padding:15px 40px;border-radius:var(--radius);font-weight:600;transition:var(--speed);
+  font-size:18px;box-shadow: 0 5px 15px rgba(244, 180, 0, 0.3);
+}
+.cta-btn:hover{
+  transform: translateY(-5px);box-shadow: 0 10px 25px rgba(244, 180, 0, 0.4);
+}
+
+/* Footer */
+footer{
+  padding:40px;text-align:center;background:var(--panel);color:var(--muted);font-size:16px;
+  margin:0 30px;border-radius:var(--radius);
+}
+.footer-content{
+  display:flex;flex-wrap:wrap;justify-content:space-between;max-width:1200px;margin:0 auto 30px;
+}
+.footer-section{
+  flex:1;min-width:250px;margin-bottom:20px;
+  text-align:left;padding:0 20px;
+}
+.footer-section h3{
+  color:var(--brand);margin-bottom:20px;font-size:22px;
+}
+.footer-section ul{
+  list-style:none;
+}
+.footer-section ul li{
+  margin-bottom:10px;
+}
+.footer-section ul li a{
+  color:var(--muted);transition:all 0.3s;
+}
+.footer-section ul li a:hover{
+  color:var(--brand);padding-left:5px;
+}
+.social-links{
+  display:flex;gap:15px;margin-top:20px;
+}
+.social-links a{
+  display:flex;align-items:center;justify-content:center;
+  width:40px;height:40px;border-radius:50%;background:var(--panel-2);
+  transition:all 0.3s;
+}
+.social-links a:hover{
+  background:var(--gradient-brand);transform: translateY(-3px);
+}
+.copyright{
+  border-top:1px solid rgba(255,255,255,0.1);padding-top:20px;
+  max-width:1200px;margin:0 auto;
+}
+
+/* Responsive */
+@media(max-width:1200px){
+  .search-box {
+    width: 200px;
+  }
+}
+
+@media(max-width:1000px){
+  .about-section{flex-direction:column;}
+  .timeline-container::after{left:20px;}
+  .timeline-item{width:100% !important;left:0 !important;padding-left:50px;}
+  .timeline-item::after{left:10px !important;right:auto !important;}
+  .team-cards{flex-direction:column;align-items:center;}
+  .footer-content{flex-direction:column;}
+  .hero h1{font-size:50px;}
+  .hero p{font-size:20px;}
+  .stats{flex-direction:column;gap:30px;}
+  .search-box {
+    width: 150px;
+  }
+}
+
+@media(max-width:768px){
+  header{padding:15px 20px;flex-direction:column;gap:15px;}
+  .hero h1{font-size:40px;}
+  .hero p{font-size:18px;}
+  .about-section, .timeline, .team-section, .cta-section, footer{padding:50px 20px;margin:0 15px 15px;}
+  .timeline-item{padding-left:40px;}
+  .team-card{width:100%;max-width:350px;}
+  .search-box {
+    width: 100%;
+    margin: 10px 0;
+  }
+  nav ul{
+    gap:10px;
+  }
+  nav ul li a{
+    padding:8px 12px;
+    font-size:14px;
+  }
+}
+</style>
+</head>
+<body>
+
+   <!-- ============================
+       Header
+  ============================ -->
+  <header>
+    <nav class="nav" aria-label="Primary">
+      <span class="brand"><span class="dot"></span> GrimHide</span>
+        <ul class="desk-links">
+        <li><a class="link" href="index.html">Home</a></li>
+        <li><a class="link" href="products.html">Products</a></li>
+        <li><a class="link" href="about.html">About</a></li>
+        <li><a class="link" href="contact.html">Contact</a></li>
+      </ul>
+      <div class="search" role="search">
+        <label for="q" class="sr-only">Search products</label>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 21l-4.35-4.35m2.02-5.15a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <input id="q" type="search" placeholder="Search products…" aria-label="Search products" />
+      </div>
+      <!-- Login Button Added Here -->
+      <a href="login.html" class="pill login-link-button" aria-label="Login">
+        <svg class="login-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M15 3H7a2 2 0 00-2 2v14a2 2 0 002 2h8m4-9l-4-4m4 4l-4 4m0 0V7a2 2 0 012-2h2a2 2 0 012 2v10a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="login-text">Login</span>
+      </a>
+      <!-- Cart Button -->
+      <button class="pill cart-btn" id="openCart" aria-label="Open cart">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 3h2l.4 2M7 13h10l3-8H6.4M7 13L5.4 5M7 13l-2 7h14M10 21a1 1 0 100-2 1 1 0 000 2zm8 0a1 1 0 100-2 1 1 0 000 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Cart <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+<!--hero-->
+
+<section class="hero">
+  <div class="hero-content">
+    <h1>About GrimHide</h1>
+    <p>Crafting premium leather armor & lifestyle gear with passion, precision, and dedication to quality.</p>
+    <a href="#story" class="hero-btn">Discover Our Story</a>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="stat-item">
+    <div class="number">10+</div>
+    <div class="label">Years Experience</div>
+  </div>
+  <div class="stat-item">
+    <div class="number">5000+</div>
+    <div class="label">Happy Customers</div>
+  </div>
+  <div class="stat-item">
+    <div class="number">150+</div>
+    <div class="label">Products</div>
+  </div>
+  <div class="stat-item">
+    <div class="number">25+</div>
+    <div class="label">Team Members</div>
+  </div>
+</section>
+
+<section class="about-section" id="story">
+  <div class="about-image">
+    <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Workshop">
+  </div>
+  <div class="about-text">
+    <h2>Our Story</h2>
+    <p>Founded in 2015 by master craftsman John Doe, GrimHide began as a small workshop with a vision to revolutionize handcrafted leather products. What started as a passion project has grown into a globally recognized brand known for exceptional quality and innovative design.</p>
+    
+    <h2>Our Mission</h2>
+    <p>We are committed to delivering high-quality leather armor and lifestyle gear that not only exceeds customer expectations but also stands the test of time. Our mission is to blend traditional craftsmanship with modern aesthetics to create products that tell a story.</p>
+    
+    <h2>Our Values</h2>
+    <ul>
+      <li>Premium Craftsmanship - Every product is meticulously handcrafted</li>
+      <li>Customer-Centric Approach - Your satisfaction is our priority</li>
+      <li>Innovation & Creativity - Constantly pushing design boundaries</li>
+      <li>Ethical & Sustainable Practices - Responsible production methods</li>
+    </ul>
+  </div>
+</section>
+
+<section class="timeline">
+  <h2>Our Journey</h2>
+  <div class="timeline-container">
+    <div class="timeline-item left">
+      <h3>2015 – Founded GrimHide</h3>
+      <p>Started in a small garage with a passion for leather craftsmanship and a vision to create premium products.</p>
+    </div>
+    <div class="timeline-item right">
+      <h3>2018 – Expanded Product Line</h3>
+      <p>Introduced our first collection of lifestyle gear, expanding beyond armor to include bags, belts, and accessories.</p>
+    </div>
+    <div class="timeline-item left">
+      <h3>2021 – Opened Flagship Store</h3>
+      <p>Launched our flagship store in New York, offering customers an immersive brand experience.</p>
+    </div>
+    <div class="timeline-item right">
+      <h3>2025 – Recognized Worldwide</h3>
+      <p>Awarded "Best Leather Craftsmanship" by International Design Awards and expanded to 15 countries.</p>
+    </div>
+  </div>
+</section>
+
+<section class="team-section">
+  <h2>Meet Our Team</h2>
+  <div class="team-cards">
+    <div class="team-card">
+      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Founder">
+      <h3>John Doe</h3>
+      <p>Founder & Lead Designer</p>
+      <div class="social">
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+    <div class="team-card">
+      <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80" alt="Leather Expert">
+      <h3>Jane Smith</h3>
+      <p>Leather Craft Expert</p>
+      <div class="social">
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+    <div class="team-card">
+      <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Marketing Head">
+      <h3>Mike Johnson</h3>
+      <p>Marketing & Sales</p>
+      <div class="social">
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <h2>Join Our Community</h2>
+  <p>Become part of the GrimHide family and get exclusive access to new product launches, special discounts, and behind-the-scenes content.</p>
+  <a href="#" class="cta-btn">Subscribe Now</a>
+</section>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-section">
+      <h3>GrimHide</h3>
+      <p>Crafting premium leather products with passion and precision since 2015.</p>
+      <div class="social-links">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-pinterest"></i></a>
+      </div>
+    </div>
+    <div class="footer-section">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="cart.html">Cart</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h3>Customer Service</h3>
+      <ul>
+        <li><a href="#">FAQs</a></li>
+        <li><a href="#">Shipping Policy</a></li>
+        <li><a href="#">Returns & Exchanges</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms & Conditions</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h3>Contact Us</h3>
+      <ul>
+        <li>Email: info@grimhide.com</li>
+        <li>Phone: +1 (555) 123-4567</li>
+        <li>Address: 123 Craftsmanship Ave, New York, NY</li>
+      </ul>
+    </div>
+  </div>
+  <div class="copyright">
+    <p>&copy; 2025 GrimHide. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script>
+// Scroll animation
+const elements=document.querySelectorAll('.hero,.about-image,.about-text,.timeline-item,.team-card');
+function scrollAnim(){const trigger=window.innerHeight*0.85;elements.forEach(el=>{const top=el.getBoundingClientRect().top;if(top<trigger) el.classList.add('show');});}
+window.addEventListener('scroll',scrollAnim);window.addEventListener('load',scrollAnim);
+
+// Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    document.querySelector(this.getAttribute('href')).scrollIntoView({
+      behavior: 'smooth'
+    });
+  });
+});
+
+// Search functionality
+document.querySelector('.search-box button').addEventListener('click', function() {
+  const searchTerm = document.querySelector('.search-box input').value;
+  if (searchTerm.trim() !== '') {
+    alert(`Searching for: ${searchTerm}`);
+    // In a real implementation, this would redirect to search results page
+    // window.location.href = `search.html?q=${encodeURIComponent(searchTerm)}`;
+  }
+});
+
+// Allow search on Enter key
+document.querySelector('.search-box input').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') {
+    document.querySelector('.search-box button').click();
+  }
+});
+</script>
+
+<!-- Font Awesome for icons -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<!--header link-->
+  <script>
+fetch('header.html') // header file ka path
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById('header-placeholder').innerHTML = data;
+  })
+  .catch(error => console.error('Header load error:', error));
+</script>
+
+
+</body>
+</html>
